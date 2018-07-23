@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SystemOfSales
+namespace SystemOfSales.UI.Registros
 {
-    public partial class Form1 : Form
+    public partial class rFacturas : Form
     {
-        public Form1()
+        public rFacturas()
         {
             InitializeComponent();
         }
