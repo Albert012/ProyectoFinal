@@ -99,7 +99,7 @@ namespace SystemOfSales.UI.Registros
         private void GuardarButton_Click(object sender, EventArgs e)
         {
             Repositorio<Facturas> repositorio = new Repositorio<Facturas>();
-            Facturas facturas = repositorio.Buscar((int)IdNumericUpDown.Value);
+            Facturas facturas = FacturasBLL.Buscar((int)IdNumericUpDown.Value);
 
             if (Validar())
             {
@@ -111,7 +111,7 @@ namespace SystemOfSales.UI.Registros
 
             if (facturas == null)
             {
-                if (repositorio.Guardar(LlenaClase()))
+                if (FacturasBLL.Guardar(LlenaClase()))
                 {
                     MessageBox.Show("Guardado Correctamente", "Exito!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     NuevoButton.PerformClick();
@@ -122,7 +122,7 @@ namespace SystemOfSales.UI.Registros
             }
             else
             {
-                if (repositorio.Modificar(LlenaClase()))
+                if (FacturasBLL.Modificar(LlenaClase()))
                 {
                     MessageBox.Show("Modificado Correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     NuevoButton.PerformClick();
@@ -149,11 +149,11 @@ namespace SystemOfSales.UI.Registros
         private void EliminarButton_Click(object sender, EventArgs e)
         {
             Repositorio<Facturas> repositorio = new Repositorio<Facturas>();
-            Facturas facturas = repositorio.Buscar((int)IdNumericUpDown.Value);
+            Facturas facturas = FacturasBLL.Buscar((int)IdNumericUpDown.Value);
 
             if (facturas != null)
             {
-                repositorio.Eliminar(facturas.FacturaId);
+                FacturasBLL.Eliminar(facturas.FacturaId);
                 MessageBox.Show("Eliminado Correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 NuevoButton.PerformClick();
             }
@@ -165,7 +165,7 @@ namespace SystemOfSales.UI.Registros
         private void BuscarButton_Click(object sender, EventArgs e)
         {
             Repositorio<Facturas> repositorio = new Repositorio<Facturas>();
-            Facturas facturas = repositorio.Buscar((int)IdNumericUpDown.Value);
+            Facturas facturas = FacturasBLL.Buscar((int)IdNumericUpDown.Value);
 
             if (facturas != null)
             {
