@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -39,8 +40,10 @@
             this.CancelarButton = new System.Windows.Forms.Button();
             this.AccederButton = new System.Windows.Forms.Button();
             this.NoUsuarioCheckBox = new System.Windows.Forms.CheckBox();
+            this.MyErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -144,11 +147,15 @@
             this.NoUsuarioCheckBox.ForeColor = System.Drawing.SystemColors.Control;
             this.NoUsuarioCheckBox.Location = new System.Drawing.Point(104, 158);
             this.NoUsuarioCheckBox.Name = "NoUsuarioCheckBox";
-            this.NoUsuarioCheckBox.Size = new System.Drawing.Size(116, 19);
+            this.NoUsuarioCheckBox.Size = new System.Drawing.Size(108, 19);
             this.NoUsuarioCheckBox.TabIndex = 7;
-            this.NoUsuarioCheckBox.Text = "No Eres Usuarios";
+            this.NoUsuarioCheckBox.Text = "No Soy Usuario";
             this.NoUsuarioCheckBox.UseVisualStyleBackColor = true;
             this.NoUsuarioCheckBox.CheckedChanged += new System.EventHandler(this.NoUsuarioCheckBox_CheckedChanged);
+            // 
+            // MyErrorProvider
+            // 
+            this.MyErrorProvider.ContainerControl = this;
             // 
             // Login
             // 
@@ -176,6 +183,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -193,6 +201,7 @@
         private System.Windows.Forms.TextBox ContrasenaTextBox;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox NoUsuarioCheckBox;
+        private System.Windows.Forms.ErrorProvider MyErrorProvider;
     }
 }
 

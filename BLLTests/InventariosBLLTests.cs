@@ -16,26 +16,35 @@ namespace BLL.Tests
         {
             bool paso = false;
             Inventarios inventario = new Inventarios();
-            inventario.InventarioId = 0;
+            inventario.InventarioId = 1;
             inventario.Fecha = DateTime.Now;
-            inventario.ProductoId = 1;
-            inventario.Descripcion = "Huevo";
+            inventario.ProductoId = 2;
             inventario.Cantidad = 2;
             paso = InventariosBLL.Guardar(inventario);
 
-            Assert.AreEqual(true, paso);
+            Assert.AreEqual(paso, true);
         }
 
         [TestMethod()]
         public void ModificarTest()
         {
-            Assert.Fail();
+            bool paso = false;
+            Inventarios inventario = new Inventarios();
+            inventario.InventarioId = 1;
+            inventario.Fecha = DateTime.Now;
+            inventario.ProductoId = 2;
+            inventario.Cantidad = 4;
+            paso = InventariosBLL.Modificar(inventario);
+
+            Assert.AreEqual(paso, true);
         }
 
         [TestMethod()]
         public void EliminarTest()
         {
-            Assert.Fail();
+            bool paso = false;            
+            paso = InventariosBLL.Eliminar(1);
+            Assert.AreEqual(paso, true);
         }
     }
 }

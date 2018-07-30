@@ -37,7 +37,25 @@ namespace SystemOfSales
                 Unico = new Login();
             return Unico;
         }
-               
+         
+        
+        private bool Validar()
+        {
+            bool Validar = false;
+
+            if (string.IsNullOrWhiteSpace(UsuarioTextBox.Text))
+            {
+                MyErrorProvider.SetError(UsuarioTextBox, "Ingrese El Usuario");
+                Validar = true;
+            }
+
+            if (string.IsNullOrWhiteSpace(ContrasenaTextBox.Text))
+            {
+                MyErrorProvider.SetError(ContrasenaTextBox, "Ingrese La Contraseña");
+                Validar = true;
+            }
+            return Validar;
+        }
 
         private void AccederButton_Click(object sender, EventArgs e)
         {
@@ -45,6 +63,11 @@ namespace SystemOfSales
             var  Lista = usuarios.GetList(u => u.Usuario.Equals(UsuarioTextBox.Text) && u.Contrasena.Equals(ContrasenaTextBox.Text));
             Usuarios user = (Lista != null && Lista.Count > 0) ? Lista[0] : null;                   
 
+            if(Validar())
+            {
+                MessageBox.Show("Revise Los Campos","Fallo",MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                return;
+            }
 
             if (user != null)
             {
