@@ -11,7 +11,8 @@ namespace Entidades
         [Key]
         public int UsuarioId { get; set; }
         public DateTime Fecha { get; set; }
-        public string Nombre { get; set; }
+        public string Usuario { get; set; }
+        public string NombreUsuario { get; set; }
         public string TipoUsuario { get; set; }
         public string Contrasena { get; set; }
 
@@ -19,10 +20,18 @@ namespace Entidades
         {
             UsuarioId = 0;
             Fecha = DateTime.Now;
-            Nombre = string.Empty;
+            Usuario = string.Empty;
+            NombreUsuario = string.Empty;
             TipoUsuario = string.Empty;
             Contrasena = string.Empty;
         }
 
+        public Usuarios(int usuarioId, string usuario, string tipoUsuario, string contrasena)
+        {
+            UsuarioId = usuarioId;
+            Usuario = usuario;
+            TipoUsuario = tipoUsuario;
+            Contrasena = contrasena;
+        }
     }
 }

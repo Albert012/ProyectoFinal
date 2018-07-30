@@ -77,6 +77,7 @@
             this.groupBox2.TabIndex = 29;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Acciones";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // EliminarButton
             // 
@@ -181,10 +182,11 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::SystemOfSales.Properties.Resources.usarios;
+            this.pictureBox1.Image = global::SystemOfSales.Properties.Resources.clientes;
             this.pictureBox1.Location = new System.Drawing.Point(15, 11);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 69);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
@@ -339,7 +341,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Crimson;
+            this.BackColor = System.Drawing.Color.Green;
             this.ClientSize = new System.Drawing.Size(386, 412);
             this.Controls.Add(this.BalanceNumericUpDown);
             this.Controls.Add(this.label10);

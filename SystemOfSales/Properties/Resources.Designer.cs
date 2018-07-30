@@ -103,6 +103,16 @@ namespace SystemOfSales.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap clientes {
+            get {
+                object obj = ResourceManager.GetObject("clientes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Company_256 {
             get {
                 object obj = ResourceManager.GetObject("Company-256", resourceCulture);

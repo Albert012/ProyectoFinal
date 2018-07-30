@@ -5,51 +5,93 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using DAL;
+using Entidades;
 
 namespace BLL
 {
-    public class Repositorio<T> : IDisposable, IRepository<T> where T : class
+    public class Repositorio<T> : IRepository<T> where T : class
     {
-        internal Contexto _contexto;
+         //ContextoRepositorio<T> _contexto;
 
-        public Repositorio(Contexto contexto)
-        {
-            _contexto = contexto;
-        }
+        //public Repositorio(ContextoRepositorio<T> contexto)
+        //{
+        //    _contexto = contexto;
+        //}
 
         public bool Guardar(T entity)
         {
             bool paso = false;
-
+            ContextoRepositorio<T> contexto = new ContextoRepositorio<T>();
             try
             {
-                if (_contexto.Set<T>().Add(entity) != null)
+                contexto.Entity.Add(entity);
+
+
+                if (entity.GetType() == typeof(Facturas))
                 {
-                    _contexto.SaveChanges();
-                    paso = true;
+                    (entity as Productos).Inventario -= (entity as FacturasDetalles).Cantidad; 
+
+                    foreach (FacturasDetalles item in (entity as Facturas).Detalles)
+                    {
+                        contexto.Detalle.Add(item);
+                    }
                 }
+                contexto.SaveChanges();
+                paso = true;
+                
             }
             catch (Exception)
             {
                 throw;
+            }
+            finally
+            {
+                contexto.Dispose();
             }
             return paso;
         }
 
-        public virtual bool Modificar(T entity)
+        public bool Modificar(T entity)
         {
             bool paso = false;
+            ContextoRepositorio<T> contexto = new ContextoRepositorio<T>();
             try
-            {
-                _contexto.Entry(entity).State = EntityState.Modified;
-                if (_contexto.SaveChanges() > 0)
+            {                
+                //contexto.Entry(entity).State = EntityState.Modified;
+
+                if (entity.GetType() == typeof(Facturas))
                 {
-                    paso = true;
+                    foreach (FacturasDetalles item in (entity as Facturas).Detalles)
+                    {
+                        var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
+                        contexto.Entry(item).State = estado;
+
+                        if (!(entity as Facturas).Detalles.ToList().Exists(f => f.Id == item.Id))
+                        {
+                            
+                            contexto.Entry(item).State = estado;
+
+                        }
+                        //else
+                           
+                        //        contexto.Detalle.Add(item);
+
+                    }
+
+                    contexto.Entry(entity).State = EntityState.Modified;
                 }
+                contexto.Entry(entity).State = EntityState.Modified;
+                contexto.SaveChanges();
+                paso = true;
+                
             }
             catch (Exception)
             {
                 throw;
+            }
+            finally
+            {
+                contexto.Dispose();
             }
             return paso;
         }
@@ -57,32 +99,52 @@ namespace BLL
         public bool Eliminar(int id)
         {
             bool paso = false;
+            ContextoRepositorio<T> contexto = new ContextoRepositorio<T>();
             try
             {
-                T entity = _contexto.Set<T>().Find(id);
-                _contexto.Set<T>().Remove(entity);
+                T entity = contexto.Entity.Find(id);
 
-                if (_contexto.SaveChanges() > 0)
+                if (entity is Facturas)
                 {
-                    paso = true;
+
+                    contexto.Detalle.RemoveRange(contexto.Detalle.Where(f => f.FacturaId == id));
                 }
-                _contexto.Dispose();
+
+                contexto.Entity.Remove(entity);
+                contexto.SaveChanges();
+                paso = true;                
+                
             }
             catch (Exception)
             {
                 throw;
             }
-
+            finally
+            {
+                contexto.Dispose();
+            }
             return paso;
         }
 
-        public virtual T Buscar(int id)
+        public T Buscar(int id)
         {
-            T entity;
-
+            T entity = null;
+            
             try
             {
-                entity = _contexto.Set<T>().Find(id);
+                ContextoRepositorio<T> contexto = new ContextoRepositorio<T>();
+
+                entity = contexto.Entity.Find(id);
+
+                if (entity != null)
+                {
+                    if (entity.GetType() == typeof(FacturasDetalles))
+                    {
+                        (entity as Facturas).Detalles.Count();
+                        (entity as Facturas).Detalles = contexto.Detalle.Where(f => f.FacturaId == id).ToList();
+
+                    }
+                }
             }
             catch (Exception)
             {
@@ -94,10 +156,13 @@ namespace BLL
 
         public List<T> GetList(Expression<Func<T, bool>> expression)
         {
-            List<T> list = new List<T>();
+            List<T> list = null;
+            
+            ContextoRepositorio<T> contexto = new ContextoRepositorio<T>();
             try
             {
-                list = _contexto.Set<T>().Where(expression).ToList();
+                list = contexto.Entity.Where(expression).ToList();             
+                
             }
             catch(Exception)
             {
@@ -106,10 +171,10 @@ namespace BLL
             return list;
         }
 
-        public void Dispose()
-        {
-            _contexto.Dispose();
-        }
+        //public void Dispose()
+        //{
+        //    _contexto.Dispose();
+        //}
 
     }
 }

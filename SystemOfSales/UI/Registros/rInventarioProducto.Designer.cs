@@ -1,6 +1,6 @@
 ﻿namespace SystemOfSales.UI.Registros
 {
-    partial class rTipoUsuario
+    partial class rInventarioProducto
     {
         /// <summary>
         /// Required designer variable.
@@ -29,25 +29,49 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.FechaDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.EliminarButton = new System.Windows.Forms.Button();
             this.GuardarButton = new System.Windows.Forms.Button();
             this.NuevoButton = new System.Windows.Forms.Button();
-            this.TipoIdNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.BuscarButton = new System.Windows.Forms.Button();
+            this.InventarioIdNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.DescripcionTextBox = new System.Windows.Forms.TextBox();
-            this.BuscarButton = new System.Windows.Forms.Button();
+            this.ProductoComboBox = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.CantidadNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.MyErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TipoIdNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InventarioIdNumericUpDown)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CantidadNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MyErrorProvider)).BeginInit();
             this.SuspendLayout();
+            // 
+            // FechaDateTimePicker
+            // 
+            this.FechaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.FechaDateTimePicker.Location = new System.Drawing.Point(145, 135);
+            this.FechaDateTimePicker.Name = "FechaDateTimePicker";
+            this.FechaDateTimePicker.Size = new System.Drawing.Size(130, 20);
+            this.FechaDateTimePicker.TabIndex = 58;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.SystemColors.Control;
+            this.label8.Location = new System.Drawing.Point(29, 135);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(116, 19);
+            this.label8.TabIndex = 57;
+            this.label8.Text = "Fecha Registro:";
             // 
             // groupBox2
             // 
@@ -55,10 +79,10 @@
             this.groupBox2.Controls.Add(this.GuardarButton);
             this.groupBox2.Controls.Add(this.NuevoButton);
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(87, 193);
+            this.groupBox2.Location = new System.Drawing.Point(70, 246);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 74);
-            this.groupBox2.TabIndex = 39;
+            this.groupBox2.TabIndex = 54;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Acciones";
             // 
@@ -92,23 +116,44 @@
             this.NuevoButton.UseVisualStyleBackColor = true;
             this.NuevoButton.Click += new System.EventHandler(this.NuevoButton_Click);
             // 
-            // TipoIdNumericUpDown
+            // BuscarButton
             // 
-            this.TipoIdNumericUpDown.Location = new System.Drawing.Point(146, 105);
-            this.TipoIdNumericUpDown.Name = "TipoIdNumericUpDown";
-            this.TipoIdNumericUpDown.Size = new System.Drawing.Size(121, 20);
-            this.TipoIdNumericUpDown.TabIndex = 37;
+            this.BuscarButton.Image = global::SystemOfSales.Properties.Resources.find;
+            this.BuscarButton.Location = new System.Drawing.Point(249, 88);
+            this.BuscarButton.Name = "BuscarButton";
+            this.BuscarButton.Size = new System.Drawing.Size(50, 39);
+            this.BuscarButton.TabIndex = 53;
+            this.BuscarButton.UseVisualStyleBackColor = true;
+            this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click);
+            // 
+            // InventarioIdNumericUpDown
+            // 
+            this.InventarioIdNumericUpDown.Location = new System.Drawing.Point(122, 99);
+            this.InventarioIdNumericUpDown.Name = "InventarioIdNumericUpDown";
+            this.InventarioIdNumericUpDown.Size = new System.Drawing.Size(121, 20);
+            this.InventarioIdNumericUpDown.TabIndex = 52;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.Location = new System.Drawing.Point(31, 165);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 19);
+            this.label2.TabIndex = 49;
+            this.label2.Text = "Producto:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(22, 106);
+            this.label1.Location = new System.Drawing.Point(24, 98);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 19);
-            this.label1.TabIndex = 36;
-            this.label1.Text = "Tipo Usuario Id:";
+            this.label1.Size = new System.Drawing.Size(101, 19);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "Inventario Id:";
             // 
             // groupBox1
             // 
@@ -116,19 +161,18 @@
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(-1, -9);
+            this.groupBox1.Location = new System.Drawing.Point(1, -6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(363, 88);
-            this.groupBox1.TabIndex = 35;
+            this.groupBox1.Size = new System.Drawing.Size(354, 88);
+            this.groupBox1.TabIndex = 47;
             this.groupBox1.TabStop = false;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::SystemOfSales.Properties.Resources.usarios;
+            this.pictureBox1.Image = global::SystemOfSales.Properties.Resources.productos;
             this.pictureBox1.Location = new System.Drawing.Point(15, 11);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 69);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
@@ -139,65 +183,70 @@
             this.label3.ForeColor = System.Drawing.Color.Red;
             this.label3.Location = new System.Drawing.Point(129, 34);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(159, 24);
+            this.label3.Size = new System.Drawing.Size(198, 24);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Registro Usuario";
+            this.label3.Text = "Inventario Productos";
             // 
-            // label2
+            // ProductoComboBox
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(45, 148);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 19);
-            this.label2.TabIndex = 40;
-            this.label2.Text = "Descripcion:";
+            this.ProductoComboBox.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.ProductoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ProductoComboBox.FormattingEnabled = true;
+            this.ProductoComboBox.Location = new System.Drawing.Point(105, 166);
+            this.ProductoComboBox.Name = "ProductoComboBox";
+            this.ProductoComboBox.Size = new System.Drawing.Size(170, 21);
+            this.ProductoComboBox.TabIndex = 59;
             // 
-            // DescripcionTextBox
+            // label4
             // 
-            this.DescripcionTextBox.Location = new System.Drawing.Point(146, 149);
-            this.DescripcionTextBox.Name = "DescripcionTextBox";
-            this.DescripcionTextBox.Size = new System.Drawing.Size(179, 20);
-            this.DescripcionTextBox.TabIndex = 41;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.Control;
+            this.label4.Location = new System.Drawing.Point(31, 206);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 19);
+            this.label4.TabIndex = 60;
+            this.label4.Text = "Cantidad:";
             // 
-            // BuscarButton
+            // CantidadNumericUpDown
             // 
-            this.BuscarButton.Image = global::SystemOfSales.Properties.Resources.find;
-            this.BuscarButton.Location = new System.Drawing.Point(275, 94);
-            this.BuscarButton.Name = "BuscarButton";
-            this.BuscarButton.Size = new System.Drawing.Size(50, 39);
-            this.BuscarButton.TabIndex = 38;
-            this.BuscarButton.UseVisualStyleBackColor = true;
-            this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click);
+            this.CantidadNumericUpDown.Location = new System.Drawing.Point(105, 208);
+            this.CantidadNumericUpDown.Name = "CantidadNumericUpDown";
+            this.CantidadNumericUpDown.Size = new System.Drawing.Size(120, 20);
+            this.CantidadNumericUpDown.TabIndex = 61;
             // 
             // MyErrorProvider
             // 
             this.MyErrorProvider.ContainerControl = this;
             // 
-            // rTipoUsuario
+            // rInventarioProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Crimson;
-            this.ClientSize = new System.Drawing.Size(362, 274);
-            this.Controls.Add(this.DescripcionTextBox);
-            this.Controls.Add(this.label2);
+            this.BackColor = System.Drawing.Color.Green;
+            this.ClientSize = new System.Drawing.Size(349, 335);
+            this.Controls.Add(this.CantidadNumericUpDown);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.ProductoComboBox);
+            this.Controls.Add(this.FechaDateTimePicker);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.BuscarButton);
-            this.Controls.Add(this.TipoIdNumericUpDown);
+            this.Controls.Add(this.InventarioIdNumericUpDown);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "rTipoUsuario";
+            this.Name = "rInventarioProducto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Registrar Tipo De Usuario";
+            this.Text = "Registrar Inventario Producto";
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.TipoIdNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InventarioIdNumericUpDown)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CantidadNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MyErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -206,18 +255,22 @@
 
         #endregion
 
+        private System.Windows.Forms.DateTimePicker FechaDateTimePicker;
+        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button EliminarButton;
         private System.Windows.Forms.Button GuardarButton;
         private System.Windows.Forms.Button NuevoButton;
         private System.Windows.Forms.Button BuscarButton;
-        private System.Windows.Forms.NumericUpDown TipoIdNumericUpDown;
+        private System.Windows.Forms.NumericUpDown InventarioIdNumericUpDown;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox DescripcionTextBox;
+        private System.Windows.Forms.ComboBox ProductoComboBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown CantidadNumericUpDown;
         private System.Windows.Forms.ErrorProvider MyErrorProvider;
     }
 }

@@ -23,6 +23,7 @@ namespace SystemOfSales.UI.Registros
         {
             UsuarioIdNumericUpDown.Value = 0;
             FechaDateTimePicker.ResetText();
+            UsuarioTextBox.Clear();
             NombreTextBox.Clear();
             TipoUsuarioComboBox.SelectedIndex = 0;
             ContrasenaTextBox.Clear();
@@ -34,7 +35,8 @@ namespace SystemOfSales.UI.Registros
             Usuarios user = new Usuarios();
             user.UsuarioId = (int)UsuarioIdNumericUpDown.Value;
             user.Fecha = FechaDateTimePicker.Value.Date;
-            user.Nombre = NombreTextBox.Text;
+            user.Usuario = UsuarioTextBox.Text;
+            user.NombreUsuario = NombreTextBox.Text;
             user.TipoUsuario = TipoUsuarioComboBox.Text;
             user.Contrasena = ContrasenaTextBox.Text;
             return user;
@@ -42,10 +44,10 @@ namespace SystemOfSales.UI.Registros
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
-            Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>(new Contexto());
+            Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>();            
             Usuarios user = repositorio.Buscar((int)UsuarioIdNumericUpDown.Value);
 
-            if(Validar())
+            if (Validar())
             {
                 MessageBox.Show("Hay Campos Que Deben Ser Revisados", "Validacion!!", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 return;
@@ -80,6 +82,12 @@ namespace SystemOfSales.UI.Registros
         private bool Validar()
         {
             bool Validar = false;
+
+            if (string.IsNullOrWhiteSpace(UsuarioTextBox.Text))
+            {
+                MyErrorProvider.SetError(UsuarioTextBox, "Debes Ingresar El Usuario");
+                Validar = true;
+            }
 
             if (string.IsNullOrWhiteSpace(NombreTextBox.Text))
             {
@@ -120,7 +128,7 @@ namespace SystemOfSales.UI.Registros
 
         private void EliminarButton_Click(object sender, EventArgs e)
         {
-            Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>(new Contexto());
+            Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>();
             Usuarios user = repositorio.Buscar((int)UsuarioIdNumericUpDown.Value);
 
             if(user != null)
@@ -142,12 +150,13 @@ namespace SystemOfSales.UI.Registros
 
         private void BuscarButton_Click(object sender, EventArgs e)
         {
-            Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>(new Contexto());
+            Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>();
             Usuarios user = repositorio.Buscar((int)UsuarioIdNumericUpDown.Value);
 
             if (user != null)
             {
-                NombreTextBox.Text = user.Nombre;
+                UsuarioTextBox.Text = user.Usuario;
+                NombreTextBox.Text = user.NombreUsuario;
                 FechaDateTimePicker.Value = user.Fecha;
                 TipoUsuarioComboBox.Text = user.TipoUsuario;
                 ContrasenaTextBox.Text = user.Contrasena;
@@ -161,6 +170,56 @@ namespace SystemOfSales.UI.Registros
 
                 
 
+        }
+
+        private void UsuarioTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)(Keys.Enter))
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+
+            }
+        }
+
+        private void NombreTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)(Keys.Enter))
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+
+            }
+        }
+
+        private void TipoUsuarioComboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)(Keys.Enter))
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+
+            }
+        }
+
+        private void ContrasenaTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)(Keys.Enter))
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+
+            }
+        }
+
+        private void ConfirmarTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)(Keys.Enter))
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+
+            }
         }
     }
 }

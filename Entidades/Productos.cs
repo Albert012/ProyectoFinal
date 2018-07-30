@@ -28,5 +28,11 @@ namespace Entidades
             Ganancias = 0;
             Inventario = 0;
         }
+
+        public override string ToString()
+        {
+            return Descripcion;
+        }
+
     }
 }

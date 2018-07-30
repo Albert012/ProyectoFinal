@@ -35,7 +35,7 @@ namespace SystemOfSales.UI.Registros
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
-            Repositorio<Productos> repositorio = new Repositorio<Productos>(new Contexto());
+            Repositorio<Productos> repositorio = new Repositorio<Productos>();
             Productos productos = repositorio.Buscar((int)ProductoIdNumericUpDown.Value);
 
             if (Validar())
@@ -70,7 +70,7 @@ namespace SystemOfSales.UI.Registros
 
         private void EliminarButton_Click(object sender, EventArgs e)
         {
-            Repositorio<Productos> repositorio = new Repositorio<Productos>(new Contexto());
+            Repositorio<Productos> repositorio = new Repositorio<Productos>();
             Productos productos = repositorio.Buscar((int)ProductoIdNumericUpDown.Value);
 
             if (productos != null)
@@ -85,7 +85,7 @@ namespace SystemOfSales.UI.Registros
 
         private void BuscarButton_Click(object sender, EventArgs e)
         {
-            Repositorio<Productos> repositorio = new Repositorio<Productos>(new Contexto());
+            Repositorio<Productos> repositorio = new Repositorio<Productos>();
             Productos productos = repositorio.Buscar((int)ProductoIdNumericUpDown.Value);
 
             if (productos != null)
@@ -158,5 +158,59 @@ namespace SystemOfSales.UI.Registros
 
         }
 
+        private void DescripcionTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)(Keys.Enter))
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+
+            }
+        }
+
+        private void CostoNumericUpDown_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)(Keys.Enter))
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+
+            }
+
+        }
+
+        private void PrecioNumericUpDown_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)(Keys.Enter))
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+
+            }
+        }
+
+        private void PrecioNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if(CostoNumericUpDown.Value != 0)
+            {
+                GananciasNumericUpDown.Value = CalculosBLL.CalcularGanancias(PrecioNumericUpDown.Value, CostoNumericUpDown.Value);
+            }
+        }
+
+        private void InventarioNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GananciasNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            if (GananciasNumericUpDown.Value > 100)
+            {
+                MyErrorProvider.SetError(GananciasNumericUpDown, "Error");
+                return;
+            }
+            else
+                PrecioNumericUpDown.Value = CalculosBLL.CalcularPrecio(CostoNumericUpDown.Value, GananciasNumericUpDown.Value);
+        }
     }
 }

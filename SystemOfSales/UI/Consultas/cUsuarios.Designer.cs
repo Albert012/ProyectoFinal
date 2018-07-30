@@ -29,28 +29,28 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.FiltroComboBox = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.CriterioTextBox = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.DesdeDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.ConsultarButton = new System.Windows.Forms.Button();
+            this.CriterioTextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.FiltroComboBox = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.HastaDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.DesdeDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.ConsultaDataGridView = new System.Windows.Forms.DataGridView();
             this.ImprimirButton = new System.Windows.Forms.Button();
-            this.ConsultarButton = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsultaDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -62,16 +62,38 @@
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(0, -6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(676, 75);
+            this.groupBox1.Size = new System.Drawing.Size(656, 75);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox2.Image = global::SystemOfSales.Properties.Resources.usarios;
+            this.pictureBox2.Location = new System.Drawing.Point(467, 11);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(82, 58);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 6;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Image = global::SystemOfSales.Properties.Resources.usarios;
+            this.pictureBox1.Location = new System.Drawing.Point(53, 11);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(82, 58);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(244, 30);
+            this.label3.Location = new System.Drawing.Point(217, 31);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(171, 24);
             this.label3.TabIndex = 4;
@@ -88,52 +110,10 @@
             this.groupBox2.ForeColor = System.Drawing.SystemColors.Control;
             this.groupBox2.Location = new System.Drawing.Point(7, 75);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(668, 72);
+            this.groupBox2.Size = new System.Drawing.Size(621, 72);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Opciones Consulta";
-            // 
-            // FiltroComboBox
-            // 
-            this.FiltroComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.FiltroComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FiltroComboBox.FormattingEnabled = true;
-            this.FiltroComboBox.Location = new System.Drawing.Point(58, 28);
-            this.FiltroComboBox.Name = "FiltroComboBox";
-            this.FiltroComboBox.Size = new System.Drawing.Size(132, 23);
-            this.FiltroComboBox.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(241, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 16);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Criterio";
-            // 
-            // CriterioTextBox
-            // 
-            this.CriterioTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CriterioTextBox.Location = new System.Drawing.Point(305, 29);
-            this.CriterioTextBox.Name = "CriterioTextBox";
-            this.CriterioTextBox.Size = new System.Drawing.Size(253, 21);
-            this.CriterioTextBox.TabIndex = 3;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.HastaDateTimePicker);
-            this.groupBox3.Controls.Add(this.DesdeDateTimePicker);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.ForeColor = System.Drawing.SystemColors.Control;
-            this.groupBox3.Location = new System.Drawing.Point(4, 153);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(390, 72);
-            this.groupBox3.TabIndex = 20;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Rango de Fecha";
             // 
             // label1
             // 
@@ -144,32 +124,63 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Filtro";
             // 
-            // label4
+            // ConsultarButton
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 33);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 16);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Desde";
+            this.ConsultarButton.Image = global::SystemOfSales.Properties.Resources.find;
+            this.ConsultarButton.Location = new System.Drawing.Point(558, 21);
+            this.ConsultarButton.Name = "ConsultarButton";
+            this.ConsultarButton.Size = new System.Drawing.Size(44, 36);
+            this.ConsultarButton.TabIndex = 4;
+            this.ConsultarButton.UseVisualStyleBackColor = true;
+            this.ConsultarButton.Click += new System.EventHandler(this.ConsultarButton_Click);
             // 
-            // label5
+            // CriterioTextBox
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(189, 33);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 16);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Hasta";
+            this.CriterioTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CriterioTextBox.Location = new System.Drawing.Point(275, 29);
+            this.CriterioTextBox.Name = "CriterioTextBox";
+            this.CriterioTextBox.Size = new System.Drawing.Size(253, 21);
+            this.CriterioTextBox.TabIndex = 3;
             // 
-            // DesdeDateTimePicker
+            // label2
             // 
-            this.DesdeDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DesdeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DesdeDateTimePicker.Location = new System.Drawing.Point(67, 30);
-            this.DesdeDateTimePicker.Name = "DesdeDateTimePicker";
-            this.DesdeDateTimePicker.Size = new System.Drawing.Size(114, 21);
-            this.DesdeDateTimePicker.TabIndex = 8;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(211, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 16);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Criterio";
+            // 
+            // FiltroComboBox
+            // 
+            this.FiltroComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.FiltroComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FiltroComboBox.FormattingEnabled = true;
+            this.FiltroComboBox.Items.AddRange(new object[] {
+            "",
+            "Usuario Id",
+            "Usuario",
+            "Nombre",
+            "Tipo Usuario"});
+            this.FiltroComboBox.Location = new System.Drawing.Point(58, 28);
+            this.FiltroComboBox.Name = "FiltroComboBox";
+            this.FiltroComboBox.Size = new System.Drawing.Size(132, 23);
+            this.FiltroComboBox.TabIndex = 1;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.HastaDateTimePicker);
+            this.groupBox3.Controls.Add(this.DesdeDateTimePicker);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.ForeColor = System.Drawing.SystemColors.Control;
+            this.groupBox3.Location = new System.Drawing.Point(7, 153);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(390, 72);
+            this.groupBox3.TabIndex = 20;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Rango de Fecha";
             // 
             // HastaDateTimePicker
             // 
@@ -180,61 +191,57 @@
             this.HastaDateTimePicker.Size = new System.Drawing.Size(114, 21);
             this.HastaDateTimePicker.TabIndex = 21;
             // 
+            // DesdeDateTimePicker
+            // 
+            this.DesdeDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DesdeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DesdeDateTimePicker.Location = new System.Drawing.Point(67, 30);
+            this.DesdeDateTimePicker.Name = "DesdeDateTimePicker";
+            this.DesdeDateTimePicker.Size = new System.Drawing.Size(114, 21);
+            this.DesdeDateTimePicker.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(189, 33);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 16);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Hasta";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 33);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(54, 16);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Desde";
+            // 
             // ConsultaDataGridView
             // 
             this.ConsultaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ConsultaDataGridView.Location = new System.Drawing.Point(13, 231);
+            this.ConsultaDataGridView.Location = new System.Drawing.Point(7, 231);
             this.ConsultaDataGridView.Name = "ConsultaDataGridView";
-            this.ConsultaDataGridView.Size = new System.Drawing.Size(649, 189);
+            this.ConsultaDataGridView.Size = new System.Drawing.Size(621, 189);
             this.ConsultaDataGridView.TabIndex = 21;
             // 
             // ImprimirButton
             // 
             this.ImprimirButton.Image = global::SystemOfSales.Properties.Resources.Printer;
-            this.ImprimirButton.Location = new System.Drawing.Point(16, 426);
+            this.ImprimirButton.Location = new System.Drawing.Point(7, 426);
             this.ImprimirButton.Name = "ImprimirButton";
             this.ImprimirButton.Size = new System.Drawing.Size(65, 36);
             this.ImprimirButton.TabIndex = 22;
             this.ImprimirButton.UseVisualStyleBackColor = true;
-            // 
-            // ConsultarButton
-            // 
-            this.ConsultarButton.Image = global::SystemOfSales.Properties.Resources.find;
-            this.ConsultarButton.Location = new System.Drawing.Point(598, 21);
-            this.ConsultarButton.Name = "ConsultarButton";
-            this.ConsultarButton.Size = new System.Drawing.Size(44, 36);
-            this.ConsultarButton.TabIndex = 4;
-            this.ConsultarButton.UseVisualStyleBackColor = true;
-            this.ConsultarButton.Click += new System.EventHandler(this.ConsultarButton_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Image = global::SystemOfSales.Properties.Resources.usarios;
-            this.pictureBox1.Location = new System.Drawing.Point(65, 11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(82, 58);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Image = global::SystemOfSales.Properties.Resources.usarios;
-            this.pictureBox2.Location = new System.Drawing.Point(525, 11);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(82, 58);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
+            this.ImprimirButton.Click += new System.EventHandler(this.ImprimirButton_Click);
             // 
             // cUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Crimson;
-            this.ClientSize = new System.Drawing.Size(675, 474);
+            this.BackColor = System.Drawing.Color.Green;
+            this.ClientSize = new System.Drawing.Size(654, 474);
             this.Controls.Add(this.ImprimirButton);
             this.Controls.Add(this.ConsultaDataGridView);
             this.Controls.Add(this.groupBox3);
@@ -247,13 +254,13 @@
             this.Text = "Consultar Usuarios";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ConsultaDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -38,6 +38,7 @@
             this.ContrasenaTextBox = new System.Windows.Forms.TextBox();
             this.CancelarButton = new System.Windows.Forms.Button();
             this.AccederButton = new System.Windows.Forms.Button();
+            this.NoUsuarioCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -103,7 +104,7 @@
             this.UsuarioTextBox.Location = new System.Drawing.Point(104, 86);
             this.UsuarioTextBox.Name = "UsuarioTextBox";
             this.UsuarioTextBox.Size = new System.Drawing.Size(147, 21);
-            this.UsuarioTextBox.TabIndex = 5;
+            this.UsuarioTextBox.TabIndex = 0;
             this.UsuarioTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UsuarioTextBox_KeyPress);
             // 
             // ContrasenaTextBox
@@ -113,35 +114,49 @@
             this.ContrasenaTextBox.Name = "ContrasenaTextBox";
             this.ContrasenaTextBox.PasswordChar = '#';
             this.ContrasenaTextBox.Size = new System.Drawing.Size(147, 21);
-            this.ContrasenaTextBox.TabIndex = 6;
+            this.ContrasenaTextBox.TabIndex = 1;
             this.ContrasenaTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ContrasenaTextBox_KeyPress);
             // 
             // CancelarButton
             // 
             this.CancelarButton.Image = global::SystemOfSales.Properties.Resources.Block3_64;
-            this.CancelarButton.Location = new System.Drawing.Point(185, 172);
+            this.CancelarButton.Location = new System.Drawing.Point(185, 187);
             this.CancelarButton.Name = "CancelarButton";
             this.CancelarButton.Size = new System.Drawing.Size(66, 45);
-            this.CancelarButton.TabIndex = 2;
+            this.CancelarButton.TabIndex = 3;
             this.CancelarButton.UseVisualStyleBackColor = true;
             this.CancelarButton.Click += new System.EventHandler(this.CancelarButton_Click);
             // 
             // AccederButton
             // 
             this.AccederButton.Image = global::SystemOfSales.Properties.Resources.Access;
-            this.AccederButton.Location = new System.Drawing.Point(41, 172);
+            this.AccederButton.Location = new System.Drawing.Point(41, 187);
             this.AccederButton.Name = "AccederButton";
             this.AccederButton.Size = new System.Drawing.Size(70, 45);
-            this.AccederButton.TabIndex = 1;
+            this.AccederButton.TabIndex = 2;
             this.AccederButton.UseVisualStyleBackColor = true;
             this.AccederButton.Click += new System.EventHandler(this.AccederButton_Click);
+            // 
+            // NoUsuarioCheckBox
+            // 
+            this.NoUsuarioCheckBox.AutoSize = true;
+            this.NoUsuarioCheckBox.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NoUsuarioCheckBox.ForeColor = System.Drawing.SystemColors.Control;
+            this.NoUsuarioCheckBox.Location = new System.Drawing.Point(104, 158);
+            this.NoUsuarioCheckBox.Name = "NoUsuarioCheckBox";
+            this.NoUsuarioCheckBox.Size = new System.Drawing.Size(116, 19);
+            this.NoUsuarioCheckBox.TabIndex = 7;
+            this.NoUsuarioCheckBox.Text = "No Eres Usuarios";
+            this.NoUsuarioCheckBox.UseVisualStyleBackColor = true;
+            this.NoUsuarioCheckBox.CheckedChanged += new System.EventHandler(this.NoUsuarioCheckBox_CheckedChanged);
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Crimson;
-            this.ClientSize = new System.Drawing.Size(302, 229);
+            this.BackColor = System.Drawing.Color.Green;
+            this.ClientSize = new System.Drawing.Size(302, 242);
+            this.Controls.Add(this.NoUsuarioCheckBox);
             this.Controls.Add(this.ContrasenaTextBox);
             this.Controls.Add(this.UsuarioTextBox);
             this.Controls.Add(this.label2);
@@ -155,6 +170,9 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Entrada Al Sistema";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
+            this.Load += new System.EventHandler(this.Login_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -174,6 +192,7 @@
         private System.Windows.Forms.TextBox UsuarioTextBox;
         private System.Windows.Forms.TextBox ContrasenaTextBox;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.CheckBox NoUsuarioCheckBox;
     }
 }
 

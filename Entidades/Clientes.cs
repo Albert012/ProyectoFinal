@@ -33,5 +33,9 @@ namespace Entidades
             //Balance = 0;
         }
 
+        public override string ToString()
+        {
+            return Nombres;
+        }
     }
 }

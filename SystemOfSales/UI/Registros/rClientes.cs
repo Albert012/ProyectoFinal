@@ -35,7 +35,7 @@ namespace SystemOfSales.UI.Registros
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
-            Repositorio<Clientes> repositorio = new Repositorio<Clientes>(new Contexto());
+            Repositorio<Clientes> repositorio = new Repositorio<Clientes>();            
             Clientes cliente = repositorio.Buscar((int)ClienteIdNumericUpDown.Value);
 
             if (Validar())
@@ -71,7 +71,7 @@ namespace SystemOfSales.UI.Registros
 
         private void EliminarButton_Click(object sender, EventArgs e)
         {
-            Repositorio<Clientes> repositorio = new Repositorio<Clientes>(new Contexto());
+            Repositorio<Clientes> repositorio = new Repositorio<Clientes>();
             Clientes cliente = repositorio.Buscar((int)ClienteIdNumericUpDown.Value);
 
             if(cliente != null)
@@ -86,17 +86,19 @@ namespace SystemOfSales.UI.Registros
 
         private void BuscarButton_Click(object sender, EventArgs e)
         {
-            Repositorio<Clientes> repositorio = new Repositorio<Clientes>(new Contexto());
+            Repositorio<Clientes> repositorio = new Repositorio<Clientes>();
             Clientes clientes = repositorio.Buscar((int)ClienteIdNumericUpDown.Value);
 
             if (clientes != null)
             {
+                ClienteIdNumericUpDown.Value = clientes.ClienteId;
                 FechaDateTimePicker.Value = clientes.Fecha;
                 NombresTextBox.Text = clientes.Nombres;
                 DireccionTextBox.Text = clientes.Direccion;
                 CedulaMaskedTextBox.Text = clientes.Cedula;
                 TelefonoMaskedTextBox.Text = clientes.Telefono;
                 SexoComboBox.Text = clientes.Sexo;
+                
             }
             else
             {
@@ -109,7 +111,7 @@ namespace SystemOfSales.UI.Registros
         private Clientes LlenaClase()
         {
             Clientes clientes = new Clientes();
-            clientes.ClienteId = (int)ClienteIdNumericUpDown.Value;
+            clientes.ClienteId = (ClienteIdNumericUpDown.Value == 0) ? 0 : (int)ClienteIdNumericUpDown.Value;
             clientes.Fecha = FechaDateTimePicker.Value.Date;
             clientes.Nombres = NombresTextBox.Text;
             clientes.Direccion = DireccionTextBox.Text;
@@ -203,6 +205,11 @@ namespace SystemOfSales.UI.Registros
                 SendKeys.Send("{TAB}");
                 
             }
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

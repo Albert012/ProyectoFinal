@@ -50,6 +50,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.FechaDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.MyErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.UsuarioTextBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UsuarioIdNumericUpDown)).BeginInit();
@@ -105,7 +107,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(24, 159);
+            this.label2.Location = new System.Drawing.Point(56, 192);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 19);
             this.label2.TabIndex = 6;
@@ -116,7 +118,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(24, 195);
+            this.label4.Location = new System.Drawing.Point(24, 229);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 19);
             this.label4.TabIndex = 7;
@@ -127,7 +129,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.Control;
-            this.label5.Location = new System.Drawing.Point(33, 233);
+            this.label5.Location = new System.Drawing.Point(33, 267);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 19);
             this.label5.TabIndex = 8;
@@ -138,7 +140,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.Control;
-            this.label6.Location = new System.Drawing.Point(43, 270);
+            this.label6.Location = new System.Drawing.Point(43, 304);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(82, 19);
             this.label6.TabIndex = 9;
@@ -153,10 +155,11 @@
             // 
             // NombreTextBox
             // 
-            this.NombreTextBox.Location = new System.Drawing.Point(98, 159);
+            this.NombreTextBox.Location = new System.Drawing.Point(128, 193);
             this.NombreTextBox.Name = "NombreTextBox";
-            this.NombreTextBox.Size = new System.Drawing.Size(179, 20);
-            this.NombreTextBox.TabIndex = 11;
+            this.NombreTextBox.Size = new System.Drawing.Size(149, 20);
+            this.NombreTextBox.TabIndex = 1;
+            this.NombreTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NombreTextBox_KeyPress);
             // 
             // TipoUsuarioComboBox
             // 
@@ -167,26 +170,29 @@
             "ADMINISTRADOR/A",
             "SUB-ADMINISTRADOR/A",
             "SECTRETARIO/A"});
-            this.TipoUsuarioComboBox.Location = new System.Drawing.Point(130, 193);
+            this.TipoUsuarioComboBox.Location = new System.Drawing.Point(130, 227);
             this.TipoUsuarioComboBox.Name = "TipoUsuarioComboBox";
             this.TipoUsuarioComboBox.Size = new System.Drawing.Size(147, 21);
-            this.TipoUsuarioComboBox.TabIndex = 12;
+            this.TipoUsuarioComboBox.TabIndex = 2;
+            this.TipoUsuarioComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TipoUsuarioComboBox_KeyPress);
             // 
             // ContrasenaTextBox
             // 
-            this.ContrasenaTextBox.Location = new System.Drawing.Point(130, 234);
+            this.ContrasenaTextBox.Location = new System.Drawing.Point(130, 268);
             this.ContrasenaTextBox.Name = "ContrasenaTextBox";
             this.ContrasenaTextBox.PasswordChar = '*';
             this.ContrasenaTextBox.Size = new System.Drawing.Size(147, 20);
-            this.ContrasenaTextBox.TabIndex = 13;
+            this.ContrasenaTextBox.TabIndex = 3;
+            this.ContrasenaTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ContrasenaTextBox_KeyPress);
             // 
             // ConfirmarTextBox
             // 
-            this.ConfirmarTextBox.Location = new System.Drawing.Point(130, 271);
+            this.ConfirmarTextBox.Location = new System.Drawing.Point(130, 305);
             this.ConfirmarTextBox.Name = "ConfirmarTextBox";
             this.ConfirmarTextBox.PasswordChar = '*';
             this.ConfirmarTextBox.Size = new System.Drawing.Size(147, 20);
-            this.ConfirmarTextBox.TabIndex = 14;
+            this.ConfirmarTextBox.TabIndex = 4;
+            this.ConfirmarTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ConfirmarTextBox_KeyPress);
             // 
             // groupBox2
             // 
@@ -194,7 +200,7 @@
             this.groupBox2.Controls.Add(this.GuardarButton);
             this.groupBox2.Controls.Add(this.NuevoButton);
             this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(52, 316);
+            this.groupBox2.Location = new System.Drawing.Point(52, 344);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 74);
             this.groupBox2.TabIndex = 16;
@@ -217,7 +223,7 @@
             this.GuardarButton.Location = new System.Drawing.Point(76, 20);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(49, 44);
-            this.GuardarButton.TabIndex = 1;
+            this.GuardarButton.TabIndex = 0;
             this.GuardarButton.UseVisualStyleBackColor = true;
             this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
             // 
@@ -264,12 +270,33 @@
             // 
             this.MyErrorProvider.ContainerControl = this;
             // 
+            // UsuarioTextBox
+            // 
+            this.UsuarioTextBox.Location = new System.Drawing.Point(128, 164);
+            this.UsuarioTextBox.Name = "UsuarioTextBox";
+            this.UsuarioTextBox.Size = new System.Drawing.Size(149, 20);
+            this.UsuarioTextBox.TabIndex = 0;
+            this.UsuarioTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UsuarioTextBox_KeyPress);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.SystemColors.Control;
+            this.label8.Location = new System.Drawing.Point(56, 163);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(66, 19);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Usuario:";
+            // 
             // rUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Crimson;
-            this.ClientSize = new System.Drawing.Size(309, 403);
+            this.BackColor = System.Drawing.Color.Green;
+            this.ClientSize = new System.Drawing.Size(309, 429);
+            this.Controls.Add(this.UsuarioTextBox);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.FechaDateTimePicker);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox2);
@@ -324,5 +351,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker FechaDateTimePicker;
         private System.Windows.Forms.ErrorProvider MyErrorProvider;
+        private System.Windows.Forms.TextBox UsuarioTextBox;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -94,7 +94,7 @@
             this.GuardarButton.Location = new System.Drawing.Point(76, 20);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(49, 44);
-            this.GuardarButton.TabIndex = 1;
+            this.GuardarButton.TabIndex = 0;
             this.GuardarButton.UseVisualStyleBackColor = true;
             this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
             // 
@@ -167,7 +167,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.Control;
-            this.label4.Location = new System.Drawing.Point(32, 135);
+            this.label4.Location = new System.Drawing.Point(46, 138);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(116, 19);
             this.label4.TabIndex = 34;
@@ -178,7 +178,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.Control;
-            this.label5.Location = new System.Drawing.Point(21, 107);
+            this.label5.Location = new System.Drawing.Point(71, 107);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 19);
             this.label5.TabIndex = 35;
@@ -230,43 +230,74 @@
             // 
             // ProductoIdNumericUpDown
             // 
-            this.ProductoIdNumericUpDown.Location = new System.Drawing.Point(118, 106);
+            this.ProductoIdNumericUpDown.Location = new System.Drawing.Point(168, 106);
             this.ProductoIdNumericUpDown.Name = "ProductoIdNumericUpDown";
-            this.ProductoIdNumericUpDown.Size = new System.Drawing.Size(120, 20);
+            this.ProductoIdNumericUpDown.Size = new System.Drawing.Size(114, 20);
             this.ProductoIdNumericUpDown.TabIndex = 40;
             // 
             // CostoNumericUpDown
             // 
             this.CostoNumericUpDown.Location = new System.Drawing.Point(88, 229);
+            this.CostoNumericUpDown.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.CostoNumericUpDown.Name = "CostoNumericUpDown";
             this.CostoNumericUpDown.Size = new System.Drawing.Size(100, 20);
-            this.CostoNumericUpDown.TabIndex = 41;
+            this.CostoNumericUpDown.TabIndex = 1;
+            this.CostoNumericUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CostoNumericUpDown_KeyPress);
             // 
             // PrecioNumericUpDown
             // 
             this.PrecioNumericUpDown.Location = new System.Drawing.Point(88, 270);
+            this.PrecioNumericUpDown.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.PrecioNumericUpDown.Name = "PrecioNumericUpDown";
             this.PrecioNumericUpDown.Size = new System.Drawing.Size(100, 20);
-            this.PrecioNumericUpDown.TabIndex = 42;
+            this.PrecioNumericUpDown.TabIndex = 2;
+            this.PrecioNumericUpDown.ValueChanged += new System.EventHandler(this.PrecioNumericUpDown_ValueChanged);
+            this.PrecioNumericUpDown.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PrecioNumericUpDown_KeyPress);
             // 
             // InventarioNumericUpDown
             // 
+            this.InventarioNumericUpDown.Enabled = false;
             this.InventarioNumericUpDown.Location = new System.Drawing.Point(292, 230);
+            this.InventarioNumericUpDown.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.InventarioNumericUpDown.Name = "InventarioNumericUpDown";
             this.InventarioNumericUpDown.Size = new System.Drawing.Size(100, 20);
             this.InventarioNumericUpDown.TabIndex = 43;
+            this.InventarioNumericUpDown.ValueChanged += new System.EventHandler(this.InventarioNumericUpDown_ValueChanged);
             // 
             // GananciasNumericUpDown
             // 
             this.GananciasNumericUpDown.Location = new System.Drawing.Point(292, 272);
+            this.GananciasNumericUpDown.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.GananciasNumericUpDown.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
             this.GananciasNumericUpDown.Name = "GananciasNumericUpDown";
             this.GananciasNumericUpDown.Size = new System.Drawing.Size(100, 20);
-            this.GananciasNumericUpDown.TabIndex = 44;
+            this.GananciasNumericUpDown.TabIndex = 3;
+            this.GananciasNumericUpDown.ValueChanged += new System.EventHandler(this.GananciasNumericUpDown_ValueChanged);
             // 
             // FechaRegistroDateTimePicker
             // 
             this.FechaRegistroDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.FechaRegistroDateTimePicker.Location = new System.Drawing.Point(146, 136);
+            this.FechaRegistroDateTimePicker.Location = new System.Drawing.Point(168, 138);
             this.FechaRegistroDateTimePicker.Name = "FechaRegistroDateTimePicker";
             this.FechaRegistroDateTimePicker.Size = new System.Drawing.Size(114, 20);
             this.FechaRegistroDateTimePicker.TabIndex = 45;
@@ -278,7 +309,7 @@
             this.FechaVencimientoDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.FechaVencimientoDateTimePicker.Location = new System.Drawing.Point(168, 164);
             this.FechaVencimientoDateTimePicker.Name = "FechaVencimientoDateTimePicker";
-            this.FechaVencimientoDateTimePicker.Size = new System.Drawing.Size(92, 20);
+            this.FechaVencimientoDateTimePicker.Size = new System.Drawing.Size(114, 20);
             this.FechaVencimientoDateTimePicker.TabIndex = 46;
             // 
             // DescripcionTextBox
@@ -286,12 +317,13 @@
             this.DescripcionTextBox.Location = new System.Drawing.Point(130, 196);
             this.DescripcionTextBox.Name = "DescripcionTextBox";
             this.DescripcionTextBox.Size = new System.Drawing.Size(262, 20);
-            this.DescripcionTextBox.TabIndex = 47;
+            this.DescripcionTextBox.TabIndex = 0;
+            this.DescripcionTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.DescripcionTextBox_KeyPress);
             // 
             // BuscarButton
             // 
             this.BuscarButton.Image = global::SystemOfSales.Properties.Resources.find;
-            this.BuscarButton.Location = new System.Drawing.Point(250, 94);
+            this.BuscarButton.Location = new System.Drawing.Point(288, 97);
             this.BuscarButton.Name = "BuscarButton";
             this.BuscarButton.Size = new System.Drawing.Size(39, 34);
             this.BuscarButton.TabIndex = 48;
@@ -306,7 +338,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Crimson;
+            this.BackColor = System.Drawing.Color.Green;
             this.ClientSize = new System.Drawing.Size(414, 394);
             this.Controls.Add(this.BuscarButton);
             this.Controls.Add(this.DescripcionTextBox);
