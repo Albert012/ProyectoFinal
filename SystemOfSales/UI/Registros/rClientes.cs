@@ -139,7 +139,7 @@ namespace SystemOfSales.UI.Registros
                 Validar = true;
             }
 
-            if(string.IsNullOrWhiteSpace(CedulaMaskedTextBox.Text))
+            if(string.IsNullOrEmpty(CedulaMaskedTextBox.Text))
             {
                 MyErrorProvider.SetError(CedulaMaskedTextBox, "Debes Llenar La Cedula");
                 Validar = true;
@@ -151,7 +151,7 @@ namespace SystemOfSales.UI.Registros
                 Validar = true;
             }
 
-            if (string.IsNullOrWhiteSpace(TelefonoMaskedTextBox.Text))
+            if (string.IsNullOrEmpty(TelefonoMaskedTextBox.Text) )
             {
                 MyErrorProvider.SetError(TelefonoMaskedTextBox, "Debes Llenar El Telefono");
                 Validar = true;

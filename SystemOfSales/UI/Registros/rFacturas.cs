@@ -142,6 +142,7 @@ namespace SystemOfSales.UI.Registros
             SubTotalNumericUpDown.Value = 0;
             ItbisNumericUpDown.Value = 0;
             TotalNumericUpDown.Value = 0;
+            CantidadNumericUpDown.Value = 0;
             MyErrorProvider.Clear();
 
         }
