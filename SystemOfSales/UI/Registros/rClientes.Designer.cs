@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rClientes));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.EliminarButton = new System.Windows.Forms.Button();
             this.GuardarButton = new System.Windows.Forms.Button();
@@ -56,6 +57,7 @@
             this.BalanceNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.MyErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ClienteIdNumericUpDown)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -230,6 +232,8 @@
             this.CedulaMaskedTextBox.Name = "CedulaMaskedTextBox";
             this.CedulaMaskedTextBox.Size = new System.Drawing.Size(96, 20);
             this.CedulaMaskedTextBox.TabIndex = 1;
+            this.CedulaMaskedTextBox.TypeValidationCompleted += new System.Windows.Forms.TypeValidationEventHandler(this.CedulaMaskedTextBox_TypeValidationCompleted);
+            this.CedulaMaskedTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CedulaMaskedTextBox_KeyDown);
             this.CedulaMaskedTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CedulaMaskedTextBox_KeyPress);
             // 
             // SexoComboBox
@@ -297,7 +301,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.Control;
-            this.label9.Location = new System.Drawing.Point(207, 259);
+            this.label9.Location = new System.Drawing.Point(209, 291);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(72, 19);
             this.label9.TabIndex = 38;
@@ -306,7 +310,7 @@
             // 
             // IngresosNumericUpDown
             // 
-            this.IngresosNumericUpDown.Location = new System.Drawing.Point(275, 259);
+            this.IngresosNumericUpDown.Location = new System.Drawing.Point(277, 291);
             this.IngresosNumericUpDown.Name = "IngresosNumericUpDown";
             this.IngresosNumericUpDown.Size = new System.Drawing.Size(98, 20);
             this.IngresosNumericUpDown.TabIndex = 39;
@@ -315,23 +319,29 @@
             // BalanceNumericUpDown
             // 
             this.BalanceNumericUpDown.BackColor = System.Drawing.Color.Red;
-            this.BalanceNumericUpDown.Location = new System.Drawing.Point(275, 285);
+            this.BalanceNumericUpDown.Enabled = false;
+            this.BalanceNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BalanceNumericUpDown.ForeColor = System.Drawing.Color.Black;
+            this.BalanceNumericUpDown.Location = new System.Drawing.Point(275, 259);
+            this.BalanceNumericUpDown.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.BalanceNumericUpDown.Name = "BalanceNumericUpDown";
-            this.BalanceNumericUpDown.Size = new System.Drawing.Size(98, 20);
+            this.BalanceNumericUpDown.Size = new System.Drawing.Size(98, 21);
             this.BalanceNumericUpDown.TabIndex = 41;
-            this.BalanceNumericUpDown.Visible = false;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.Control;
-            this.label10.Location = new System.Drawing.Point(207, 285);
+            this.label10.Location = new System.Drawing.Point(207, 259);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(68, 19);
             this.label10.TabIndex = 40;
             this.label10.Text = "Balance:";
-            this.label10.Visible = false;
             // 
             // MyErrorProvider
             // 
@@ -365,6 +375,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "rClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -411,5 +422,6 @@
         private System.Windows.Forms.NumericUpDown BalanceNumericUpDown;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ErrorProvider MyErrorProvider;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

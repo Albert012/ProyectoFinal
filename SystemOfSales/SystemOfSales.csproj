@@ -122,6 +122,12 @@
     <Compile Include="UI\Registros\rInventarioProducto.Designer.cs">
       <DependentUpon>rInventarioProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Registros\rPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registros\rPagos.Designer.cs">
+      <DependentUpon>rPagos.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Registros\rProductos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,18 @@
     <Compile Include="UI\Reportes\ListadoUsuariosReviewer.Designer.cs">
       <DependentUpon>ListadoUsuariosReviewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Reportes\ReciboReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReciboReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReciboReviewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\ReciboReviewer.Designer.cs">
+      <DependentUpon>ReciboReviewer.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -204,6 +222,9 @@
     <EmbeddedResource Include="UI\Registros\rInventarioProducto.resx">
       <DependentUpon>rInventarioProducto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registros\rPagos.resx">
+      <DependentUpon>rPagos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Registros\rProductos.resx">
       <DependentUpon>rProductos.cs</DependentUpon>
     </EmbeddedResource>
@@ -230,6 +251,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Reportes\ListadoUsuariosReviewer.resx">
       <DependentUpon>ListadoUsuariosReviewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReciboReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReciboReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Reportes\ReciboReviewer.resx">
+      <DependentUpon>ReciboReviewer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />

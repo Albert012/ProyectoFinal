@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rProductos));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.EliminarButton = new System.Windows.Forms.Button();
             this.GuardarButton = new System.Windows.Forms.Button();
@@ -279,11 +280,6 @@
             // GananciasNumericUpDown
             // 
             this.GananciasNumericUpDown.Location = new System.Drawing.Point(292, 272);
-            this.GananciasNumericUpDown.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
             this.GananciasNumericUpDown.Minimum = new decimal(new int[] {
             10000,
             0,
@@ -360,6 +356,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "rProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

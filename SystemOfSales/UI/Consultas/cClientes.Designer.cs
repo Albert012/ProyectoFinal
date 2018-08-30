@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(cClientes));
             this.ConsultaDataGridView = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.HastaDateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -36,15 +37,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.ConsultarButton = new System.Windows.Forms.Button();
             this.CriterioTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.FiltroComboBox = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.ImprimirButton = new System.Windows.Forms.Button();
-            this.ConsultarButton = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ImprimirButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ConsultaDataGridView)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -137,6 +138,16 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Filtro";
             // 
+            // ConsultarButton
+            // 
+            this.ConsultarButton.Image = global::SystemOfSales.Properties.Resources.find;
+            this.ConsultarButton.Location = new System.Drawing.Point(558, 21);
+            this.ConsultarButton.Name = "ConsultarButton";
+            this.ConsultarButton.Size = new System.Drawing.Size(44, 36);
+            this.ConsultarButton.TabIndex = 4;
+            this.ConsultarButton.UseVisualStyleBackColor = true;
+            this.ConsultarButton.Click += new System.EventHandler(this.ConsultarButton_Click);
+            // 
             // CriterioTextBox
             // 
             this.CriterioTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -183,37 +194,6 @@
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(217, 31);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(165, 24);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Consulta Clientes";
-            // 
-            // ImprimirButton
-            // 
-            this.ImprimirButton.Image = global::SystemOfSales.Properties.Resources.Printer;
-            this.ImprimirButton.Location = new System.Drawing.Point(8, 425);
-            this.ImprimirButton.Name = "ImprimirButton";
-            this.ImprimirButton.Size = new System.Drawing.Size(65, 41);
-            this.ImprimirButton.TabIndex = 27;
-            this.ImprimirButton.UseVisualStyleBackColor = true;
-            this.ImprimirButton.Click += new System.EventHandler(this.ImprimirButton_Click);
-            // 
-            // ConsultarButton
-            // 
-            this.ConsultarButton.Image = global::SystemOfSales.Properties.Resources.find;
-            this.ConsultarButton.Location = new System.Drawing.Point(558, 21);
-            this.ConsultarButton.Name = "ConsultarButton";
-            this.ConsultarButton.Size = new System.Drawing.Size(44, 36);
-            this.ConsultarButton.TabIndex = 4;
-            this.ConsultarButton.UseVisualStyleBackColor = true;
-            this.ConsultarButton.Click += new System.EventHandler(this.ConsultarButton_Click);
-            // 
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -236,6 +216,27 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(217, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(165, 24);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Consulta Clientes";
+            // 
+            // ImprimirButton
+            // 
+            this.ImprimirButton.Image = global::SystemOfSales.Properties.Resources.Printer;
+            this.ImprimirButton.Location = new System.Drawing.Point(8, 425);
+            this.ImprimirButton.Name = "ImprimirButton";
+            this.ImprimirButton.Size = new System.Drawing.Size(65, 41);
+            this.ImprimirButton.TabIndex = 27;
+            this.ImprimirButton.UseVisualStyleBackColor = true;
+            this.ImprimirButton.Click += new System.EventHandler(this.ImprimirButton_Click);
+            // 
             // cClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,6 +249,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "cClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

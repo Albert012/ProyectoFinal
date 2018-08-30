@@ -11,8 +11,9 @@ namespace DAL
         
     {
         public DbSet<Productos> Productos { get; set; }
-       // public DbSet<Clientes> Clientes { get; set; }
+        public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Inventarios> Inventarios { get; set; }
+        public DbSet<Pagos> Pagos { get; set; }
         public DbSet<FacturasDetalles> Detalle { get; set; }
         public DbSet<Facturas> Facturas { get; set; }
 

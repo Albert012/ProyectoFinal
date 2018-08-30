@@ -26,7 +26,7 @@ namespace SystemOfSales
             
         }
 
-        public static Entidades.Usuarios MostrarUser()
+        public static Usuarios MostrarUser()
         {
             return UserLogin;
         }
@@ -80,7 +80,7 @@ namespace SystemOfSales
             }
             else
             {
-                MessageBox.Show("Usuario No Existe");
+                MessageBox.Show("El Usuario Ingresado No Existe, Verifique Y Intente De Nuevo");
                 UsuarioTextBox.Clear();
                 ContrasenaTextBox.Clear();
             }

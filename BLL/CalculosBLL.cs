@@ -39,5 +39,10 @@ namespace BLL
         {
             return subtotal + itbis;
         }
+
+        public static Decimal CalcularDevuelta(Decimal efectivo, Decimal total)
+        {
+            return efectivo - total;
+        }
     }
 }

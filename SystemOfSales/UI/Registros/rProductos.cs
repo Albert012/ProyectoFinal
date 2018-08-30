@@ -191,7 +191,8 @@ namespace SystemOfSales.UI.Registros
 
         private void PrecioNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if(CostoNumericUpDown.Value != 0)
+            
+            if(CostoNumericUpDown.Value != 0 )
             {
                 GananciasNumericUpDown.Value = CalculosBLL.CalcularGanancias(PrecioNumericUpDown.Value, CostoNumericUpDown.Value);
             }

@@ -35,21 +35,21 @@ namespace SystemOfSales
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rClientes cliente = new rClientes();
-            cliente.MdiParent = this.MdiParent;
+            cliente.MdiParent = this;
             cliente.Show();
         }
 
         private void productosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rProductos producto = new rProductos();
-            producto.MdiParent = this.MdiParent;
+            producto.MdiParent = this;
             producto.Show();
         }
 
         private void facturasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rFacturas factura = new rFacturas();
-            factura.MdiParent = this.MdiParent;
+            factura.MdiParent = this;
             factura.Show();
         }
 
@@ -76,45 +76,45 @@ namespace SystemOfSales
         private void usuariosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             cUsuarios cUsuarios = new cUsuarios();
-            cUsuarios.MdiParent = this.MdiParent;
+            cUsuarios.MdiParent = this;
             cUsuarios.Show();
         }
 
         private void clientesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             cClientes cClientes = new cClientes();
-            cClientes.MdiParent = this.MdiParent;
+            cClientes.MdiParent = this;
             cClientes.Show();
         }
 
         private void productosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             cProductos cProductos = new cProductos();
-            cProductos.MdiParent = this.MdiParent;
+            cProductos.MdiParent = this;
             cProductos.Show();
         }
 
         private void usuarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rUsuarios rUsuarios = new rUsuarios();
-            rUsuarios.MdiParent = this.MdiParent;
+            rUsuarios.MdiParent = this;
             rUsuarios.Show();
         }
 
         private void inventarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rInventarioProducto inventario = new rInventarioProducto();
-            inventario.MdiParent = this.MdiParent;
+            inventario.MdiParent = this;
             inventario.Show();
         }
-        
+
 
         private void LlenaLabel()
         {
-            
+
             UserStatusLabel.Text = Login.MostrarUser().Usuario;
             TipoStatusLabel.Text = Login.MostrarUser().TipoUsuario;
-            
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -134,6 +134,18 @@ namespace SystemOfSales
             Login.Cambio().Show();
             Login.Cambio().Activate();
 
+        }
+
+        private void archivoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pagosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rPagos rPagos = new rPagos();
+            rPagos.MdiParent = this;
+            rPagos.Show();
         }
     }
 }

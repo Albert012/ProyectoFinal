@@ -49,6 +49,7 @@
     <Compile Include="CalculosBLL.cs" />
     <Compile Include="FacturasBLL.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="PagosBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositorio.cs" />
     <Compile Include="InventariosBLL.cs" />

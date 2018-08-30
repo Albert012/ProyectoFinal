@@ -16,7 +16,7 @@ namespace Entidades
         public int Cantidad { get; set; }
         public Decimal Precio { get; set; }
         public Decimal Importe { get; set; }
-
+        
         [ForeignKey("ProductoId")]
         public virtual Productos Producto { get; set; }
 
@@ -24,7 +24,6 @@ namespace Entidades
         public FacturasDetalles()
         {
             Id = 0;
-            FacturaId = 0; 
         }
 
         public FacturasDetalles(int id, int facturaId, int productoId, int cantidad, decimal precio, decimal importe)
@@ -35,6 +34,7 @@ namespace Entidades
             this.Cantidad = cantidad;
             this.Precio = precio;
             this.Importe = importe;
+            //this.Producto = producto;
         }
     }
 }

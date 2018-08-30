@@ -48,7 +48,7 @@ namespace SystemOfSales.UI.Registros
                     NuevoButton.PerformClick();
                 }
                 else
-                    MessageBox.Show("No Se Pudo Registrar El Cliente", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No Se Pudo Registrar El Inventario", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             }
             else
@@ -59,7 +59,7 @@ namespace SystemOfSales.UI.Registros
                     NuevoButton.PerformClick();
                 }
                 else
-                    MessageBox.Show("No Se Pudo Modificar El Cliente", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show("No Se Pudo Modificar El Inventario", "Fallo!!", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
 

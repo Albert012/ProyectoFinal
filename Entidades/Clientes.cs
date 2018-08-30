@@ -17,7 +17,7 @@ namespace Entidades
         public string Sexo { get; set; }
         public string Telefono { get; set; }
         //public Decimal Ingresos { get; set; }
-        //public Decimal Balance { get; set; }
+        public Decimal Balance { get; set; }
 
 
         public Clientes()
@@ -30,7 +30,7 @@ namespace Entidades
             Sexo = string.Empty;
             Telefono = string.Empty;
             //Ingresos = 0;
-            //Balance = 0;
+            Balance = 0;
         }
 
         public override string ToString()

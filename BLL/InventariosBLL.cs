@@ -21,10 +21,7 @@ namespace BLL
             {
                 if(contexto.Inventarios.Add(inventario) != null)
                 {
-                    var producto =contexto.Productos.Find(inventario.ProductoId);
-                    producto.Inventario += inventario.Cantidad;
-
-                   
+                    contexto.Productos.Find(inventario.ProductoId).Inventario += inventario.Cantidad;                   
                     contexto.SaveChanges();
                     paso = true;
                 }                
@@ -47,6 +44,7 @@ namespace BLL
             Repositorio<Inventarios> repositorio = new Repositorio<Inventarios>();
             try
             {
+                contexto.Entry(inventario).State = EntityState.Modified;
 
                 Inventarios ant = repositorio.Buscar(inventario.InventarioId);
                 var Producto = contexto.Productos.Find(inventario.ProductoId);
@@ -62,9 +60,9 @@ namespace BLL
                     Producto.Inventario += diferencia;
                 }
 
-                contexto.Entry(inventario).State = EntityState.Modified;
-                if (contexto.SaveChanges() > 0)
-                    paso = true;
+                
+                contexto.SaveChanges();
+                paso = true;
             }
             catch(Exception)
             {
@@ -86,15 +84,12 @@ namespace BLL
             try
             {
                 Inventarios inventarios = contexto.Inventarios.Find(id);
-                var Producto = contexto.Productos.Find(inventarios.ProductoId);
-                Producto.Inventario -= inventarios.Cantidad;
+                contexto.Productos.Find(inventarios.ProductoId).Inventario += inventarios.Cantidad;
 
                 contexto.Inventarios.Remove(inventarios);
-
-                if (contexto.SaveChanges() > 0)
-                {
-                    paso = true;
-                }
+                contexto.SaveChanges();
+                paso = true;
+                
             }
             catch (Exception)
             {

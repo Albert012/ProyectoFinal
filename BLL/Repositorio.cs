@@ -11,13 +11,6 @@ namespace BLL
 {
     public class Repositorio<T> : IRepository<T> where T : class
     {
-         //ContextoRepositorio<T> _contexto;
-
-        //public Repositorio(ContextoRepositorio<T> contexto)
-        //{
-        //    _contexto = contexto;
-        //}
-
         public bool Guardar(T entity)
         {
             bool paso = false;
@@ -29,8 +22,7 @@ namespace BLL
 
                 if (entity.GetType() == typeof(Facturas))
                 {
-                    (entity as Productos).Inventario -= (entity as FacturasDetalles).Cantidad; 
-
+                    
                     foreach (FacturasDetalles item in (entity as Facturas).Detalles)
                     {
                         contexto.Detalle.Add(item);
@@ -57,7 +49,7 @@ namespace BLL
             ContextoRepositorio<T> contexto = new ContextoRepositorio<T>();
             try
             {                
-                //contexto.Entry(entity).State = EntityState.Modified;
+                contexto.Entry(entity).State = EntityState.Modified;
 
                 if (entity.GetType() == typeof(Facturas))
                 {
@@ -66,19 +58,18 @@ namespace BLL
                         var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
                         contexto.Entry(item).State = estado;
 
-                        if (!(entity as Facturas).Detalles.ToList().Exists(f => f.Id == item.Id))
+                        if ((entity as Facturas).Detalles.ToList().Exists(f => f.Id == item.Id))
                         {
                             
                             contexto.Entry(item).State = estado;
 
                         }
-                        //else
-                           
-                        //        contexto.Detalle.Add(item);
+                        else                           
+                            contexto.Detalle.Add(item);
 
                     }
 
-                    contexto.Entry(entity).State = EntityState.Modified;
+                    
                 }
                 contexto.Entry(entity).State = EntityState.Modified;
                 contexto.SaveChanges();
@@ -129,19 +120,22 @@ namespace BLL
         public T Buscar(int id)
         {
             T entity = null;
-            
+            ContextoRepositorio<T> contexto = new ContextoRepositorio<T>();
             try
-            {
-                ContextoRepositorio<T> contexto = new ContextoRepositorio<T>();
+            {                
 
                 entity = contexto.Entity.Find(id);
 
                 if (entity != null)
                 {
-                    if (entity.GetType() == typeof(FacturasDetalles))
+                    if (entity.GetType() == typeof(Facturas))
                     {
-                        (entity as Facturas).Detalles.Count();
-                        (entity as Facturas).Detalles = contexto.Detalle.Where(f => f.FacturaId == id).ToList();
+                        //(entity as Facturas).Detalles.Count();
+                        foreach (var item in (entity as Facturas).Detalles)
+                        {
+                            string p = item.Producto.Descripcion;
+                        }
+                        (entity as Facturas).Detalles = contexto.Detalle.Where(f => f.FacturaId == id).ToList();                       
 
                     }
                 }
@@ -149,6 +143,10 @@ namespace BLL
             catch (Exception)
             {
                 throw;
+            }
+            finally
+            {
+                contexto.Dispose();               
             }
 
             return entity;
@@ -168,13 +166,11 @@ namespace BLL
             {
                 throw;
             }
+            finally
+            {
+                contexto.Dispose();
+            }
             return list;
         }
-
-        //public void Dispose()
-        //{
-        //    _contexto.Dispose();
-        //}
-
     }
 }

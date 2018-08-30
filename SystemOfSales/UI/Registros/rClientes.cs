@@ -29,6 +29,7 @@ namespace SystemOfSales.UI.Registros
             CedulaMaskedTextBox.Clear();
             SexoComboBox.SelectedIndex = 0;
             TelefonoMaskedTextBox.Clear();
+            BalanceNumericUpDown.Value = 0;
             MyErrorProvider.Clear();
 
         }
@@ -37,7 +38,7 @@ namespace SystemOfSales.UI.Registros
         {
             Repositorio<Clientes> repositorio = new Repositorio<Clientes>();            
             Clientes cliente = repositorio.Buscar((int)ClienteIdNumericUpDown.Value);
-
+            MyErrorProvider.Clear();
             if (Validar())
             {
                 MessageBox.Show("Hay Campos Que Deben Ser Revisados", "Validacion!!", MessageBoxButtons.OK, MessageBoxIcon.Question);
@@ -98,6 +99,7 @@ namespace SystemOfSales.UI.Registros
                 CedulaMaskedTextBox.Text = clientes.Cedula;
                 TelefonoMaskedTextBox.Text = clientes.Telefono;
                 SexoComboBox.Text = clientes.Sexo;
+                BalanceNumericUpDown.Value = clientes.Balance;
                 
             }
             else
@@ -119,7 +121,7 @@ namespace SystemOfSales.UI.Registros
             clientes.Cedula = CedulaMaskedTextBox.Text;
             clientes.Telefono = TelefonoMaskedTextBox.Text;
             //clientes.Ingresos = IngresosNumericUpDown.Value;
-            //clientes.Balance = BalanceNumericUpDown.Value;
+            clientes.Balance = BalanceNumericUpDown.Value;
             return clientes;
         }
 
@@ -129,7 +131,7 @@ namespace SystemOfSales.UI.Registros
 
             if(string.IsNullOrWhiteSpace(NombresTextBox.Text))
             {
-                MyErrorProvider.SetError(NombresTextBox, "Debes Llenar El Nombre");
+                MyErrorProvider.SetError(NombresTextBox, "Debes Llenar Los Nombres");
                 Validar = true;
             }
 
@@ -139,9 +141,9 @@ namespace SystemOfSales.UI.Registros
                 Validar = true;
             }
 
-            if(string.IsNullOrEmpty(CedulaMaskedTextBox.Text))
+            if(CedulaMaskedTextBox.Text.Length < 13 )//&& (CedulaMaskedTextBox.Text.Substring(0,2)=="056" || CedulaMaskedTextBox.Text.Substring(0, 2) == "402"))
             {
-                MyErrorProvider.SetError(CedulaMaskedTextBox, "Debes Llenar La Cedula");
+                MyErrorProvider.SetError(CedulaMaskedTextBox, "Debes Llenar Completo La Cedula");
                 Validar = true;
             }
 
@@ -151,9 +153,9 @@ namespace SystemOfSales.UI.Registros
                 Validar = true;
             }
 
-            if (string.IsNullOrEmpty(TelefonoMaskedTextBox.Text) )
+            if (TelefonoMaskedTextBox.Text.Length  < 12)// && ( TelefonoMaskedTextBox.Text.Substring(0,2) == "809" || TelefonoMaskedTextBox.Text.Substring(0, 2) == "829" || TelefonoMaskedTextBox.Text.Substring(0, 2) == "849"))
             {
-                MyErrorProvider.SetError(TelefonoMaskedTextBox, "Debes Llenar El Telefono");
+                MyErrorProvider.SetError(TelefonoMaskedTextBox, "Debes Llenar Completo El Telefono");
                 Validar = true;
             }
 
@@ -210,6 +212,20 @@ namespace SystemOfSales.UI.Registros
         private void groupBox2_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void CedulaMaskedTextBox_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        {
+            if(!e.IsValidInput)
+            {
+                toolTip1.ToolTipTitle = "Cedula Invalida";
+                toolTip1.Show("Ingrese la cedual en el formato de 056-8967547-8",CedulaMaskedTextBox,0,-20,5000);
+            }            
+        }
+
+        private void CedulaMaskedTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            toolTip1.Hide(CedulaMaskedTextBox);
         }
     }
 }

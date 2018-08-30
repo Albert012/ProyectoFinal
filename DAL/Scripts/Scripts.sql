@@ -1,6 +1,6 @@
-create database SystemOfSales
+create database SystemOfSalesDB
 go
-use SystemOfSales
+use SystemOfSalesDB
 go
 
 create table Usuarios(
@@ -24,7 +24,8 @@ Nombres varchar(max),
 Direccion varchar(max),
 Cedula varchar(13),
 Sexo varchar(6),
-Telefono varchar(12)
+Telefono varchar(12),
+Balance money
 );
 
 go
@@ -36,6 +37,17 @@ Descripcion varchar(max),
 Fecha date,
 Cantidad int
 );
+
+go
+
+create table Pagos(
+PagoId int identity primary key,
+Fecha date,
+ClienteId int not null,
+Nombres varchar(max),
+Total money
+);
+
 
 go
 
@@ -58,7 +70,9 @@ Fecha date,
 ClienteId int not null,
 SubTotal money,
 Itbis money,
-Total money
+Total money,
+Efectivo money,
+Devuelta money
 );
 
 go

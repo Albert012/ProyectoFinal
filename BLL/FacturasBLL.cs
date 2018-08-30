@@ -15,6 +15,7 @@ namespace BLL
         {
             bool paso = false;
             Contexto contexto = new Contexto();
+            
             try
             {
                 if(contexto.Facturas.Add(factura) != null)
@@ -22,6 +23,7 @@ namespace BLL
                     foreach (var item in factura.Detalles)
                     {
                         contexto.Productos.Find(item.ProductoId).Inventario -= item.Cantidad;
+
                     }
 
                     contexto.SaveChanges();
@@ -47,50 +49,27 @@ namespace BLL
             Contexto contexto = new Contexto();
             try
             {
-                var Ant = BLL.FacturasBLL.Buscar(facturas.FacturaId);
-
-                foreach (var item in Ant.Detalles)
-                {
-                    contexto.Productos.Find(item.ProductoId).Inventario += item.Cantidad;
-
-                    if (!facturas.Detalles.ToList().Exists(f => f.Id == item.Id))
-                    {
-                        //contexto.Productos.Find(item.ProductoId).Inventario += item.Cantidad;
-                        item.Producto = null;
-                        contexto.Entry(item).State = EntityState.Deleted;
-                    }
-
-                }
+                contexto.Entry(facturas).State = EntityState.Detached;
+                contexto.Entry(facturas).State = EntityState.Modified;
 
                 foreach (var item in facturas.Detalles)
                 {
-                    contexto.Productos.Find(item.ProductoId).Inventario -= item.Cantidad;
-
                     var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
-
-                    contexto.Entry(item).State = estado;
-                    //if (facturas.Detalles.ToList().Exists(f => f.Id == item.Id))
-                    //{
-                    //    //item.Producto = null;
-                    //    contexto.Entry(item).State = estado;
-                    //    contexto.Productos.Find(item.ProductoId).Inventario -= item.Cantidad;
-
-                    //}
-                    //else
-                    //    contexto.Detalle.Add(item);
+                    if (facturas.Detalles.ToList().Exists(f => f.Id == item.Id))
+                    {
+                        contexto.Entry(item).State = estado;
+                        contexto.Productos.Find(item.ProductoId).Inventario -= item.Cantidad;
+                        
+                    }
+                    else
+                    {
+                        contexto.Detalle.Add(item);
+                        
+                    }
                 }
-
-                //foreach (FacturasDetalles item in facturas.Detalles)
-                //{
-                //    if (item.Id == 0)
-                //        contexto.Detalle.Add(item);
-                //    else
-                //        contexto.Entry(item).State = EntityState.Modified;
-                //}
-
-                contexto.Entry(facturas).State = EntityState.Modified;
-                if (contexto.SaveChanges() > 0)
-                    paso = true;
+                
+                contexto.SaveChanges();
+                paso = true;
             }
             catch(Exception)
             {
@@ -114,8 +93,10 @@ namespace BLL
 
                 foreach (var item in facturas.Detalles)
                 {
-                    var producto = contexto.Productos.Find(item.ProductoId).Inventario += item.Cantidad;
+                    contexto.Productos.Find(item.ProductoId).Inventario += item.Cantidad;
+                    
                 }
+                contexto.Detalle.RemoveRange(contexto.Detalle.Where(d => d.FacturaId == id));
                 contexto.Facturas.Remove(facturas);
                 contexto.SaveChanges();
                 paso = true;
@@ -156,6 +137,10 @@ namespace BLL
             {
                 throw;
             }
+            finally
+            {
+                contexto.Dispose();
+            }
             return facturas;
               
         }
@@ -170,6 +155,26 @@ namespace BLL
                 list = contexto.Facturas.Where(expression).ToList();
             }
             catch(Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return list;
+        }
+
+        public static List<FacturasDetalles> List(Expression<Func<FacturasDetalles, bool>> expression)
+        {
+            List<FacturasDetalles> list = new List<FacturasDetalles>();
+            Contexto contexto = new Contexto();
+
+            try
+            {
+                list = contexto.Detalle.Where(expression).ToList();
+            }
+            catch (Exception)
             {
                 throw;
             }
