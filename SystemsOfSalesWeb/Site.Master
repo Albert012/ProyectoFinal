@@ -1,0 +1,116 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SystemsOfSalesWeb.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title><%: Page.Title %> - System Of Sales </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link href="Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="Content/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="Content/js/bootstrap.min.js"></script>
+    <script src="Content/js/jquery-3.3.1.min.js"></script>
+    <script src="Content/js/respond.min.js"></script>
+    <script src="Content/js/popper.min.js"></script>
+
+
+    <script type="text/javascript">
+        function openModal() {
+            $("#myModal").modal({
+                backdrop: 'static',
+                keyboard: false
+            }); 
+            $("#myModal").modal("show");
+        }
+    </script>
+    <style>
+        .user-btn {
+            margin-left: auto !important;
+        }
+
+        @media (max-width: 992px) {
+            .user-btn {
+                margin-left: 0 !important;
+            }
+
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="../../default.aspx">System Of Sales</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="../../default.aspx">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+       
+        <%--Registros--%>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" >Registros</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" runat="server" href="~/UI/Registros/rClientes.aspx">Clientes</a>
+          <a class="dropdown-item" runat="server" href="~/UI/Registros/rProductos.aspx">Productos</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" runat="server" href="~/UI/Registros/rFacturas.aspx">Facturas</a>
+        </div>
+      </li>
+        <%--Consultas--%>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownConsultas" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Consultas</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownConsultas">
+          <a class="dropdown-item" href="~/UI/Consultas/cClientes.aspx">Clientes</a>
+          <a class="dropdown-item" href="~/UI/Consultas/cProductos.aspx">Productos</a>
+            <a class="dropdown-item" href="~/UI/Consultas/cUsuarios.aspx">Usuarios</a>
+            <a class="dropdown-item" href="~/UI/Consultas/cInventarios.aspx">Inventarios</a>
+            <a class="dropdown-item" href="~/UI/Consultas/cFacturas.aspx">Facturas</a>
+            <a class="dropdown-item" href="~/UI/Consultas/cPagos.aspx">Pagos</a>
+            <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Facturas</a>
+        </div>
+      </li>
+        <%--Control--%>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownControl" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Control</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownControl">
+          <a class="dropdown-item" href="#">Usuarios</a>
+          <a class="dropdown-item" href="#">Pagos</a>
+            <a class="dropdown-item" href="#">Inventarios</a>
+            <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Cambiar Usuario</a>
+        </div>
+      </li>
+
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    </form>
+  </div>
+</nav>
+    <form runat="server">
+     <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContentCP" runat="server">
+
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - System Of Sales</p>
+            </footer>
+        </div>
+   </form>
+</body>
+</html>

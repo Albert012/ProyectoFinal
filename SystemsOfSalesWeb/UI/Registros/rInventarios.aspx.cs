@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SystemOfSalesWeb
+namespace SystemsOfSalesWeb.UI.Registros
 {
-    public partial class WebMain : System.Web.UI.Page
+    public partial class rInventarios : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

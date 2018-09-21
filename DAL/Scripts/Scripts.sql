@@ -3,6 +3,8 @@ go
 use SystemOfSalesDB
 go
 
+--select * from Clientes
+
 create table Usuarios(
 UsuarioId int identity primary key,
 Fecha date,
