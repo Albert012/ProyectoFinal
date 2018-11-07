@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="CalculosBLL.cs" />
     <Compile Include="FacturasBLL.cs" />
+    <Compile Include="InventarioRepositorio.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="PagosBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

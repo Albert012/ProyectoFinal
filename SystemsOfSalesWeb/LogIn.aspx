@@ -15,40 +15,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 </head>
-<body>
-
+<body style="background-image:url(/Background/logo.jpg)">
+    
     <h1 class="text-center text-info">System Of Sales</h1>
-
+  
     <form id="LogInform" runat="server">
-        <div class="container-fluid">
             
             <%--Usuario--%>
-            <div class="row">
+            <div class="form-row justify-content-center ">
                 <div class="form-group">
                     <label for="UsuarioTextBox" class="col-md-3 control-label input-sm text-success">Usuario:</label>
                     <div class="col-md-10 col-sm-2 col-xs-4">
-                        <asp:TextBox ID="UsuarioTextBox" runat="server" placeholder="Usuario" class="form-control input-md" />
+                        <asp:TextBox ID="UsuarioTextBox" runat="server" AutoCompleteType="None" placeholder="Usuario" class="form-control input-md" />
 
                     </div>
                 </div>
             </div>
 
             <%--Contrasena--%>
-            <div class="row">
+            <div class="form-row  justify-content-center">
                 <div class="form-group">
                     <label for="PassTextBox" class="col-md-3 control-label input-sm text-success">Contraseña:</label>
                     <div class="col-md-10 col-sm-2 col-xs-4">
-                        <asp:TextBox ID="PassTextBox" runat="server" TextMode="Password" placeholder="Contraseña" class="form-control input-md" />
+                        <asp:TextBox ID="PassTextBox" runat="server" AutoCompleteType="None" TextMode="Password" placeholder="Contraseña" class="form-control input-md" />
 
                     </div>
                 </div>
             </div>
 
+        <div class="form-row justify-content-center">
             <%--Botones--%>
-            <asp:Button ID="IniciarButton" CssClass="btn btn-info" runat="server" Text="Iniciar" OnClick="IniciarButton_Click" />
-
+            <asp:Button ID="IniciarButton" CssClass="btn btn-outline-info mt-2" runat="server" Text="Iniciar" OnClick="IniciarButton_Click" />
 
         </div>
+            
+
+        
     </form>
 
 </body>

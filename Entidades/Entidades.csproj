@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clientes.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Facturas.cs" />
     <Compile Include="FacturasDetalles.cs" />
     <Compile Include="Inventarios.cs" />

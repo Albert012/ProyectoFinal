@@ -13,5 +13,10 @@ namespace SystemsOfSalesWeb.UI.Consultas
         {
 
         }
+
+        protected void BuscarButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
