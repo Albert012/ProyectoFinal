@@ -26,11 +26,13 @@ namespace SystemsOfSalesWeb.UI.Registros
             if (!Page.IsPostBack)
             {
                 FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
+
+                ViewState["Detalle"] = new FacturasDetalles();
                 LlenarDropDownListProductos();
                 LlenarDropDownListClientes();
                 //BindGrid();
                 //ViewState.Add("Factura", detalles);
-                //ViewState["Factura"] = new Facturas();
+                ViewState["Factura"] = new Facturas();
 
 
             }
@@ -73,12 +75,12 @@ namespace SystemsOfSalesWeb.UI.Registros
 
         private Facturas LlenaClase()
         {
-            factura = (Facturas)ViewState["Factura"];
+            
             factura.FacturaId = Utils.ToInt(FacturaIdTextBox.Text);
             factura.Fecha = Utils.ToDateTime(FechaTextBox.Text);
             factura.ClienteId = Utils.ToInt(ClienteDropDownList.SelectedValue);
             factura.Total = Utils.ToDecimal(MontoTextBox.Text);
-
+            factura.Detalles = (List<FacturasDetalles>)ViewState["Factura"];
             return factura;
         }
 
@@ -87,13 +89,14 @@ namespace SystemsOfSalesWeb.UI.Registros
             FacturaIdTextBox.Text = "";
             FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
             ClienteDropDownList.SelectedIndex = 0;
-            ProductoDropDownList.SelectedIndex = 0;
-            PrecioTextBox.Text = "";
+            ProductoDropDownList.SelectedIndex = 0;            
             CantidadTextBox.Text = "";
+            PrecioTextBox.Text = "";
             ImporteTextBox.Text = "";
             MontoTextBox.Text = "";
-            ViewState["Factura"] = null;
             FacturaGridView.DataSource = null;
+            ViewState["Detalle"] = null;
+
             //BindGrid();
 
         }
@@ -102,7 +105,8 @@ namespace SystemsOfSalesWeb.UI.Registros
         private void LlenarCampos(Facturas facturas)
         {
             ClienteDropDownList.SelectedValue = factura.ClienteId.ToString();
-            FacturaGridView.DataSource = ViewState["Factura"];
+            FacturaGridView.DataSource = factura.Detalles;
+            FacturaGridView.DataBind();
             MontoTextBox.Text = factura.Total.ToString();
         }
 
@@ -125,31 +129,68 @@ namespace SystemsOfSalesWeb.UI.Registros
             ClienteDropDownList.AppendDataBoundItems = true;
             ClienteDropDownList.DataBind();
         }
-        private String SubTotal()
+        private string SubTotal()
         {
-            if (ImporteTextBox.Text != "")
-                return MontoTextBox.Text += CalculosBLL.CalcularSubTotal(Convert.ToDecimal(ImporteTextBox.Text)).ToString();
-            else
-                return MontoTextBox.Text = "";
+            decimal monto = 0;
+            foreach (var item in (List<FacturasDetalles>)ViewState["Factura"] )
+            {
+                monto += CalculosBLL.CalcularSubTotal(item.Importe);
+            }
+            return MontoTextBox.Text = monto.ToString();
         }
 
         protected void LinkButton_Click(object sender, EventArgs e)
         {
-
-            /* if (FacturaGridView.Rows.Count != 0)
-             {
-                 factura.Detalles = (List<FacturasDetalles>)ViewState["Factura"];
-
-             }*/
-            decimal monto = 0;
-
             if (IsValid)
             {
+               
+                if (FacturaGridView.Rows.Count != 0)
+                {
+                    factura.Detalles = (List<FacturasDetalles>)ViewState["Factura"];
 
-                //detalles = ViewState["Detalle"];
+                }
 
+                var facturas = FacturaRepositorio.Buscar(Utils.ToInt(FacturaIdTextBox.Text));
+
+                if(facturas != null)
+                {
+                    if(factura.Detalles.Exists(x=> x.ProductoId.Equals(Utils.ToInt(ProductoDropDownList.SelectedValue))))
+                    {
+                        var producto = factura.Detalles.Where(x => x.ProductoId.Equals(Utils.ToInt(ProductoDropDownList.SelectedValue)));
+
+                    }
+
+                    if (((FacturasDetalles)ViewState["Detalle"]).Id != 0)
+                    {
+                        factura.Detalles.Add(new FacturasDetalles(((FacturasDetalles)ViewState["Detalle"]).Id, factura.FacturaId, Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.Text, Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text)));
+                    }
+                    else
+                        factura.Detalles.Add(new FacturasDetalles(0, factura.FacturaId, Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.SelectedItem.ToString(), Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text)));
+                    ViewState["Detalle"] = new FacturasDetalles();
+                }
+                else
+                {
+                    factura.Detalles.Add(new FacturasDetalles(0, 0, Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.SelectedItem.ToString(), Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text)));
+                    ViewState["Factura"] = factura.Detalles;
+                }
+                SubTotal();
+                FacturaGridView.DataSource = ViewState["Factura"];
+                FacturaGridView.DataBind();
+
+
+                /*else
+                {
+                    Utils.MostrarMensaje(this, "Agregado", "Exito!!", "info");
+                    factura = (Facturas)ViewState["Factura"];
+                    factura.AgregarDetalle(0, factura.FacturaId, Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.SelectedItem.ToString(), Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text));
+
+                    ViewState["Factura"] = factura;
+                    this.BindGrid();
+                    monto += CalculosBLL.CalcularSubTotal(Utils.ToDecimal(ImporteTextBox.Text));
+
+                    MontoTextBox.Text = monto.ToString();
+                }*/
                 
-                Utils.MostrarMensaje(this, "Agregado", "Exito!!", "info");
 
                 /*detalles.Add(new FacturasDetalles(
                     id: 0,
@@ -160,15 +201,9 @@ namespace SystemsOfSalesWeb.UI.Registros
                     precio: Utils.ToDecimal(PrecioTextBox.Text),
                     importe: Utils.ToDecimal(ImporteTextBox.Text)
                     ));*/
-                factura = (Facturas)ViewState["Factura"];
-                factura.AgregarDetalle(0, factura.FacturaId, Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.SelectedItem.ToString(), Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text));
                 
-                ViewState["Factura"] = factura;
-                this.BindGrid();
                 //SubTotal();
-                monto += CalculosBLL.CalcularSubTotal(Utils.ToDecimal(ImporteTextBox.Text));
-
-                MontoTextBox.Text = monto.ToString();
+                
 
             }
 
@@ -241,7 +276,7 @@ namespace SystemsOfSalesWeb.UI.Registros
         protected void EliminarLinkButton_Click(object sender, EventArgs e)
         {
             GridViewRow grid = FacturaGridView.SelectedRow;
-            int id = Convert.ToInt32(FacturaGridView.DataKeys[grid.RowIndex].Value);
+            //int id = Convert.ToInt32(FacturaGridView.DataKeys[grid.RowIndex].Value);
             List<FacturasDetalles> lista = (List<FacturasDetalles>)ViewState["Detalle"];
             Repositorio<Facturas> repositorio = new Repositorio<Facturas>();
             Facturas facturas = repositorio.Buscar(Utils.ToInt(FacturaIdTextBox.Text));
@@ -250,8 +285,7 @@ namespace SystemsOfSalesWeb.UI.Registros
             {
                 if (facturas != null)
                 {
-                    FacturaRepositorio.Eliminar(facturas.FacturaId);
-                    lista.RemoveAll(x => x.Id == id);
+                    FacturaRepositorio.Eliminar(facturas.FacturaId);                    
                     ViewState["Detalle"] = lista;
                     FacturaGridView.DataSource = ViewState["Detalle"];
                     FacturaGridView.DataBind();
@@ -339,7 +373,14 @@ namespace SystemsOfSalesWeb.UI.Registros
 
         protected void CondicionRadioButton_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
+        }
+
+        protected void FacturaGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            FacturaGridView.DataSource = ViewState["Factura"];
+            FacturaGridView.PageIndex = e.NewPageIndex;
+            FacturaGridView.DataBind();
         }
     }
 

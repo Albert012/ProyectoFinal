@@ -107,7 +107,7 @@
                             <%--DataGridView--%>
                             <div class="form-row justify-content-center">
                                 <div class="col-lg-11">
-                                    <asp:GridView ID="FacturaGridView" runat="server" AllowPaging="true" CellPadding="4" PageSize="7" ForeColor="#333333" GridLines="None" class="table table-condensed table-bordered table-responsive" AutoGenerateColumns="False">
+                                    <asp:GridView ID="FacturaGridView" OnPageIndexChanging="FacturaGridView_PageIndexChanging" runat="server" AllowPaging="true" CellPadding="4" PageSize="7" ForeColor="#333333" GridLines="None" class="table table-condensed table-bordered table-responsive" AutoGenerateColumns="False">
                                         <AlternatingRowStyle BackColor="LightSkyBlue" />
                                         <Columns>
                                             <asp:CommandField ControlStyle-CssClass="btn btn-secondary" ButtonType="Button" ShowEditButton="true" />
