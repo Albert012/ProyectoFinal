@@ -6,12 +6,14 @@ using System.Text;
 
 namespace Entidades
 {
+    [Serializable]
     public class Usuarios
     {
         [Key]
         public int UsuarioId { get; set; }
         public DateTime Fecha { get; set; }
         public string Usuario { get; set; }
+        public string Email { get; set; }
         public string NombreUsuario { get; set; }
         public string TipoUsuario { get; set; }
         public string Contrasena { get; set; }
@@ -19,17 +21,17 @@ namespace Entidades
         public Usuarios()
         {
             UsuarioId = 0;
-            Fecha = DateTime.Now;
-            Usuario = string.Empty;
+            Fecha = DateTime.Now;            
+            Email = string.Empty;
             NombreUsuario = string.Empty;
             TipoUsuario = string.Empty;
             Contrasena = string.Empty;
         }
 
-        public Usuarios(int usuarioId, string usuario, string tipoUsuario, string contrasena)
+        public Usuarios(int usuarioId, string usuario, string email, string tipoUsuario, string contrasena)
         {
-            UsuarioId = usuarioId;
-            Usuario = usuario;
+            UsuarioId = usuarioId;            
+            Email = email;
             TipoUsuario = tipoUsuario;
             Contrasena = contrasena;
         }

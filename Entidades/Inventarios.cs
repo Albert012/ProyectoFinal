@@ -6,14 +6,16 @@ using System.Text;
 
 namespace Entidades
 {   
+    [Serializable]
     public class Inventarios
     {
         [Key]
-        public int InventarioId { get; set; }
-        public int ProductoId { get; set; }
-        public string Descripcion { get; set; }
+        public int InventarioId { get; set; }     
         public DateTime Fecha { get; set; }
         public int Cantidad { get; set; }
+        public string Descripcion { get; set; }
+        public int ProductoId { get; set; }
+
 
         public Inventarios()
         {

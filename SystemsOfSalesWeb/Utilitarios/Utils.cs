@@ -14,8 +14,7 @@ namespace SystemsOfSalesWeb.Utilitarios
                  String.Format("toastr.{0}('{1}', '{2}');", type.ToLower(), message, title), addScriptTags: true);
         }
 
-
-
+              
         public static int ToInt(string valor)
         {
             int retorno = 0;

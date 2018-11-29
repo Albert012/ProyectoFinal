@@ -91,7 +91,7 @@ namespace SystemOfSales.UI.Registros
             if (productos != null)
             {
                 FechaRegistroDateTimePicker.Value = productos.FechaRegistro;
-                FechaVencimientoDateTimePicker.Value = productos.FechaVencimiento;
+                //FechaVencimientoDateTimePicker.Value = productos.FechaVencimiento;
                 DescripcionTextBox.Text = productos.Descripcion;
                 CostoNumericUpDown.Value = productos.Costo;
                 PrecioNumericUpDown.Value = productos.Precio;
@@ -148,7 +148,7 @@ namespace SystemOfSales.UI.Registros
             Productos productos = new Productos();
             productos.ProductoId = (int)ProductoIdNumericUpDown.Value;
             productos.FechaRegistro = FechaRegistroDateTimePicker.Value.Date;
-            productos.FechaVencimiento = FechaVencimientoDateTimePicker.Value.Date;
+           // productos.FechaVencimiento = FechaVencimientoDateTimePicker.Value.Date;
             productos.Descripcion = DescripcionTextBox.Text;
             productos.Costo = CostoNumericUpDown.Value;
             productos.Precio = PrecioNumericUpDown.Value;

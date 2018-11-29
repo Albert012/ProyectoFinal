@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Entidades
 {
-    public enum TiposMensaje
+    public enum TipoUsuario
     {
-        Sucess,
-        Error
+        Administrador,
+        Cliente
     }
 }

@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculosBLL.cs" />
+    <Compile Include="FacturaDetalleRepositorio.cs" />
+    <Compile Include="FacturaRepositorio.cs" />
     <Compile Include="FacturasBLL.cs" />
     <Compile Include="InventarioRepositorio.cs" />
     <Compile Include="IRepository.cs" />

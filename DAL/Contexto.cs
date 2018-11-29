@@ -16,7 +16,7 @@ namespace DAL
         public DbSet<Inventarios> Inventarios { get; set; }
         public DbSet<Pagos> Pagos { get; set; }
         public DbSet<Facturas> Facturas { get; set; }
-
+        public DbSet<FacturasDetalles> FacturasDetalles { get; set; }
         public Contexto() : base("ConStr")
         {
 

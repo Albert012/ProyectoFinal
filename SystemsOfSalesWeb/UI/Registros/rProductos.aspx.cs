@@ -16,10 +16,8 @@ namespace SystemsOfSalesWeb.UI.Registros
         {
             if (!Page.IsPostBack)
             {
-                LlenaDropDown();
-
-                FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                FechaInventarioTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                
+                FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");                
                 
                 int id = Utils.ToInt(Request.QueryString["id"]);
 
@@ -34,69 +32,7 @@ namespace SystemsOfSalesWeb.UI.Registros
                         LlenaCampos(producto);
                 }
             }
-            else
-            {
-                LlenaDropDown();
-            }
-        }
-
-        protected void NuevoButton_Click(object sender, EventArgs e)
-        {
-            Limpiar();
-        }
-
-        protected void GuadarButton_Click(object sender, EventArgs e)
-        {
-            Repositorio<Productos> repositorio = new Repositorio<Productos>();
-            Productos producto = repositorio.Buscar(Utils.ToInt(ProductoIdTextBox.Text));
-
-            if (producto == null)
-            {
-                if (repositorio.Guardar(LlenaClase()))
-                {
-                    Utils.MostrarMensaje(this, "Guardado", "Exito!!", "success");
-                    Limpiar();
-                }
-                else
-                {
-                    Utils.MostrarMensaje(this, "No Guardado", "Fallo!!", "error");
-                    Limpiar();
-                }
-            }
-            else
-            {
-                if (repositorio.Modificar(LlenaClase()))
-                {
-                    Utils.MostrarMensaje(this, "Modificado", "Exito!!", "info");
-                    Limpiar();
-                }
-                else
-                {
-                    Utils.MostrarMensaje(this, "No Modificado", "Fallo!!", "error");
-                    Limpiar();
-                }
-
-            }
-        }
-
-        protected void EliminarButton_Click(object sender, EventArgs e)
-        {
-            Repositorio<Productos> repositorio = new Repositorio<Productos>();
-            Productos producto = repositorio.Buscar(Utils.ToInt(ProductoIdTextBox.Text));
-
-            if(producto != null)
-            {
-                repositorio.Eliminar(producto.ProductoId);
-                Utils.MostrarMensaje(this, "Eliminado", "Exito!!", "success");
-                Limpiar();
-            }
-            else
-            {
-                Utils.MostrarMensaje(this, "No Eliminado", "Fallo!!", "error");
-                Limpiar();
-            }
-
-        }
+        }               
 
         protected void BuscarLinkButton_Click(object sender, EventArgs e)
         {
@@ -117,19 +53,7 @@ namespace SystemsOfSalesWeb.UI.Registros
 
         }
 
-        //para el modal
-        private void LlenaDropDown()
-        {
-            Repositorio<Productos> repositorio = new Repositorio<Productos>();
-            ProductoDropDownList.DataSource = repositorio.GetList(p => true);
-            ProductoDropDownList.DataValueField = "ProductoId";
-            ProductoDropDownList.DataTextField = "Descripcion";
-            ProductoDropDownList.DataBind();
-        }
-
-
-
-
+                     
         //Metodos
 
         private Productos LlenaClase()
@@ -169,58 +93,111 @@ namespace SystemsOfSalesWeb.UI.Registros
             InventarioTextBox.Text = "";
 
         }
+              
+        
 
-        protected void InventarioLinkButton_Click(object sender, EventArgs e)
+        protected void PrecioTextBox_TextChanged(object sender, EventArgs e)
         {
-
-            //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script> $('#myModal').modal('show');</script>", false);
-
-        }
-
-        private Inventarios LlenaClaseInventario()
-        {
-            Inventarios inventarios = new Inventarios();
-
-            inventarios.InventarioId = Utils.ToInt(InventarioIdTextBox.Text);            
-            inventarios.ProductoId = Utils.ToInt(ProductoDropDownList.SelectedValue);
-            inventarios.Descripcion = ProductoDropDownList.Text;
-            inventarios.Cantidad = Utils.ToInt(CantidadTextBox.Text);
-
-
-            return inventarios;
-        }
-
-        protected void AddButton_Click(object sender, EventArgs e)
-        {
-            InventarioRepositorio repositorio = new InventarioRepositorio();
-            Inventarios inventario = repositorio.Buscar(Utils.ToInt(InventarioIdTextBox.Text));
-
-            if (inventario == null)
+            if (CostoTextBox.Text != "" && PrecioTextBox.Text != "")
             {
-                if (repositorio.Guardar(LlenaClaseInventario()))
+                var ganacias = CalculosBLL.CalcularGanancias(Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(CostoTextBox.Text));
+                
+                GanaciasTextBox.Text = ganacias.ToString();
+            }
+                
+            else
+                GanaciasTextBox.Text = "";
+        }
+
+        protected void GanaciasTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (GanaciasTextBox.Text != "")
+            {
+                var precio = CalculosBLL.CalcularPrecio(Utils.ToDecimal(CostoTextBox.Text), Utils.ToDecimal(GanaciasTextBox.Text));
+
+            }             
+            else
+                PrecioTextBox.Text = "";
+        }
+
+        protected void NuevoLinkButton_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
+
+        protected void GuardarLinkButton_Click(object sender, EventArgs e)
+        {
+            Repositorio<Productos> repositorio = new Repositorio<Productos>();
+            Productos producto = repositorio.Buscar(Utils.ToInt(ProductoIdTextBox.Text));
+
+            if (producto == null)
+            {
+                if (repositorio.Guardar(LlenaClase()))
                 {
                     Utils.MostrarMensaje(this, "Guardado", "Exito!!", "success");
                     Limpiar();
                 }
                 else
                 {
-                    Utils.MostrarMensaje(this, "No Guardado", "Fallo!!", "error");
+                    Utils.MostrarMensaje(this, "No Guardado", "Fallo!!", "warning");
                     Limpiar();
                 }
             }
             else
             {
-                if (repositorio.Modificar(LlenaClaseInventario()))
+                if (repositorio.Modificar(LlenaClase()))
                 {
                     Utils.MostrarMensaje(this, "Modificado", "Exito!!", "info");
                     Limpiar();
                 }
                 else
                 {
-                    Utils.MostrarMensaje(this, "No Modificado", "Fallo!!", "error");
+                    Utils.MostrarMensaje(this, "No Modificado", "Fallo!!", "warning");
                     Limpiar();
                 }
 
+            }
+        }
+
+        protected void EliminarLinkButton_Click(object sender, EventArgs e)
+        {
+            Repositorio<Productos> repositorio = new Repositorio<Productos>();
+            Productos producto = repositorio.Buscar(Utils.ToInt(ProductoIdTextBox.Text));
+
+            if (producto != null)
+            {
+                repositorio.Eliminar(producto.ProductoId);
+                Utils.MostrarMensaje(this, "Eliminado", "Exito!!", "success");
+                Limpiar();
+            }
+            else
+            {
+                Utils.MostrarMensaje(this, "No Eliminado", "Fallo!!", "warning");
+                Limpiar();
+            }
+        }
+
+        protected void CostoCustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (Utils.ToDecimal(CostoTextBox.Text) > Utils.ToDecimal(PrecioTextBox.Text))
+            {
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
+            }
+        }
+
+        protected void PrecioCustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (Utils.ToDecimal(PrecioTextBox.Text) < Utils.ToDecimal(CostoTextBox.Text))
+            {
+                args.IsValid = false;
+            }
+            else
+            {
+                args.IsValid = true;
             }
         }
     }

@@ -40,6 +40,15 @@ namespace SystemsOfSalesWeb.UI.Registros {
         protected global::System.Web.UI.WebControls.TextBox FechaTextBox;
         
         /// <summary>
+        /// RFVFFecha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVFFecha;
+        
+        /// <summary>
         /// BuscarLinkButton control.
         /// </summary>
         /// <remarks>
@@ -49,13 +58,13 @@ namespace SystemsOfSalesWeb.UI.Registros {
         protected global::System.Web.UI.WebControls.LinkButton BuscarLinkButton;
         
         /// <summary>
-        /// UsuarioTextBox control.
+        /// EmailTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UsuarioTextBox;
+        protected global::System.Web.UI.WebControls.TextBox EmailTextBox;
         
         /// <summary>
         /// RequiredFieldValidator2 control.
@@ -83,6 +92,15 @@ namespace SystemsOfSalesWeb.UI.Registros {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        
+        /// <summary>
+        /// RegularExpressionValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
         
         /// <summary>
         /// ContrasenaTextBox control.
@@ -139,39 +157,30 @@ namespace SystemsOfSalesWeb.UI.Registros {
         protected global::System.Web.UI.WebControls.CustomValidator CustomValidator1;
         
         /// <summary>
-        /// ErrorLabel control.
+        /// NuevoLinkButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrorLabel;
+        protected global::System.Web.UI.WebControls.LinkButton NuevoLinkButton;
         
         /// <summary>
-        /// NuevoButton control.
+        /// GuardarLinkButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button NuevoButton;
+        protected global::System.Web.UI.WebControls.LinkButton GuardarLinkButton;
         
         /// <summary>
-        /// GuadarButton control.
+        /// EliminarLinkButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GuadarButton;
-        
-        /// <summary>
-        /// EliminarButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EliminarButton;
+        protected global::System.Web.UI.WebControls.LinkButton EliminarLinkButton;
     }
 }

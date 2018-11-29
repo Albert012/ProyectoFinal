@@ -76,6 +76,15 @@ namespace SystemsOfSalesWeb.UI.Registros {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVNombre;
         
         /// <summary>
+        /// RegularExpressionValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
+        
+        /// <summary>
         /// ApellidoTextBox control.
         /// </summary>
         /// <remarks>
@@ -92,6 +101,15 @@ namespace SystemsOfSalesWeb.UI.Registros {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVApellido;
+        
+        /// <summary>
+        /// RegularExpressionValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator3;
         
         /// <summary>
         /// DireccionTextBox control.
@@ -148,6 +166,15 @@ namespace SystemsOfSalesWeb.UI.Registros {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
         
         /// <summary>
+        /// IdRegularExpressionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator IdRegularExpressionValidator;
+        
+        /// <summary>
         /// TelefonoTextBox control.
         /// </summary>
         /// <remarks>
@@ -166,6 +193,15 @@ namespace SystemsOfSalesWeb.UI.Registros {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
+        /// RegularExpressionValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        
+        /// <summary>
         /// SexoDropDownList control.
         /// </summary>
         /// <remarks>
@@ -175,13 +211,13 @@ namespace SystemsOfSalesWeb.UI.Registros {
         protected global::System.Web.UI.WebControls.DropDownList SexoDropDownList;
         
         /// <summary>
-        /// RequiredFieldValidator5 control.
+        /// SexoCustomValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+        protected global::System.Web.UI.WebControls.CustomValidator SexoCustomValidator;
         
         /// <summary>
         /// BalanceTextBox control.
@@ -193,30 +229,30 @@ namespace SystemsOfSalesWeb.UI.Registros {
         protected global::System.Web.UI.WebControls.TextBox BalanceTextBox;
         
         /// <summary>
-        /// NuevoButton control.
+        /// NuevoLinkButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button NuevoButton;
+        protected global::System.Web.UI.WebControls.LinkButton NuevoLinkButton;
         
         /// <summary>
-        /// GuadarButton control.
+        /// GuardarLinkButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GuadarButton;
+        protected global::System.Web.UI.WebControls.LinkButton GuardarLinkButton;
         
         /// <summary>
-        /// EliminarButton control.
+        /// EliminarLinkButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EliminarButton;
+        protected global::System.Web.UI.WebControls.LinkButton EliminarLinkButton;
     }
 }

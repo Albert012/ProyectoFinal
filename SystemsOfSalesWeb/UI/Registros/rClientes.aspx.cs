@@ -12,6 +12,8 @@ namespace SystemsOfSalesWeb.UI.Registros
 {
     public partial class rClientes : System.Web.UI.Page
     {
+        string condicion = "Seleccione";
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -34,84 +36,88 @@ namespace SystemsOfSalesWeb.UI.Registros
 
         }
 
-        protected void BuscarButton_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        protected void NuevoButton_Click(object sender, EventArgs e)
-        {
-            Limpiar();
-        }
-
-        protected void GuadarButton_Click(object sender, EventArgs e)
-        {
-            Repositorio<Clientes> repositorio = new Repositorio<Clientes>();
-            Clientes cliente = repositorio.Buscar(Utils.ToInt(ClienteIdTextBox.Text));
-
-            if(cliente == null)
-            {
-                if(repositorio.Guardar(LlenaClase()))
-                {
-                    Utils.MostrarMensaje(this, "Guardado", "Exito!!", "success");
-                    Limpiar();
-                }
-                else
-                {
-                    Utils.MostrarMensaje(this, "No Guardado", "Error", "error");
-                    Limpiar();
-                }
-            }
-            else
-            {
-                if (repositorio.Modificar(LlenaClase()))
-                {
-                    Utils.MostrarMensaje(this, "Modificado", "Exito!!", "info");
-                    Limpiar();
-                }
-                else
-                {
-                    Utils.MostrarMensaje(this, "No Modificado", "Error", "error");
-                    Limpiar();
-                }
-
-            }
-
-        }
-
-        protected void EliminarButton_Click(object sender, EventArgs e)
-        {
-            Repositorio<Clientes> repositorio = new Repositorio<Clientes>();
-            Clientes clientes = repositorio.Buscar(Utils.ToInt(ClienteIdTextBox.Text));
-
-            if(clientes != null)
-            {
-                repositorio.Eliminar(clientes.ClienteId);
-                Utils.MostrarMensaje(this, "Eliminado", "Exito!!", "success");
-                Limpiar();
-            }
-            else
-            {
-                Utils.MostrarMensaje(this, "No Eliminado", "Error", "error");
-                Limpiar();
-            }
-        }
-
         protected void BuscarLinkButton_Click(object sender, EventArgs e)
         {
             Repositorio<Clientes> repositorio = new Repositorio<Clientes>();
             Clientes clientes = repositorio.Buscar(Utils.ToInt(ClienteIdTextBox.Text));
 
-            if (clientes != null)
+            if(IsValid)
             {
-                Utils.MostrarMensaje(this, "Hay Resultado", "Exito!!", "info");
-                Limpiar();
-                LlenaCampos(clientes);
+                if (clientes != null)
+                {
+                    Utils.MostrarMensaje(this, "Hay Resultado", "Exito!!", "info");
+                    Limpiar();
+                    LlenaCampos(clientes);
+                }
+                else
+                {
+                    Utils.MostrarMensaje(this, "No Hay Resultado", "Error", "error");
+                    Limpiar();
+                }
             }
-            else
+        }
+
+        protected void NuevoLinkButton_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
+
+        protected void GuardarLinkButton_Click(object sender, EventArgs e)
+        {
+            Repositorio<Clientes> repositorio = new Repositorio<Clientes>();
+            Clientes cliente = repositorio.Buscar(Utils.ToInt(ClienteIdTextBox.Text));
+
+            if (IsValid)
             {
-                Utils.MostrarMensaje(this, "No Hay Resultado", "Error", "error");
-                Limpiar();
+                if (cliente == null)
+                {
+                    if (repositorio.Guardar(LlenaClase()))
+                    {
+                        Utils.MostrarMensaje(this, "Guardado", "Exito!!", "success");
+                        Limpiar();
+                    }
+                    else
+                    {
+                        Utils.MostrarMensaje(this, "No Guardado", "Advertencia", "warning");
+                        Limpiar();
+                    }
+                }
+                else
+                {
+                    if (repositorio.Modificar(LlenaClase()))
+                    {
+                        Utils.MostrarMensaje(this, "Modificado", "Exito!!", "info");
+                        Limpiar();
+                    }
+                    else
+                    {
+                        Utils.MostrarMensaje(this, "No Modificado", "Advertencia", "warning");
+                        Limpiar();
+                    }
+
+                }
+            }
+
+        }
+
+        protected void EliminarLinkButton_Click(object sender, EventArgs e)
+        {
+            Repositorio<Clientes> repositorio = new Repositorio<Clientes>();
+            Clientes clientes = repositorio.Buscar(Utils.ToInt(ClienteIdTextBox.Text));
+
+            if (IsValid)
+            {
+                if (clientes != null)
+                {
+                    repositorio.Eliminar(clientes.ClienteId);
+                    Utils.MostrarMensaje(this, "Eliminado", "Exito!!", "success");
+                    Limpiar();
+                }
+                else
+                {
+                    Utils.MostrarMensaje(this, "No Eliminado", "Advertencia", "warning");
+                    Limpiar();
+                }
             }
         }
 
@@ -121,7 +127,7 @@ namespace SystemsOfSalesWeb.UI.Registros
         {
             Clientes cliente = new Clientes();
             cliente.ClienteId = Utils.ToInt(ClienteIdTextBox.Text);
-            cliente.Fecha = Utils.ToDateTime(FechaTextBox.Text);
+            cliente.Fecha = Convert.ToDateTime(FechaTextBox.Text).Date;
             cliente.Nombres = NombreTextBox.Text;
             cliente.Apellidos = ApellidoTextBox.Text;
             cliente.Direccion = DireccionTextBox.Text;
@@ -146,7 +152,6 @@ namespace SystemsOfSalesWeb.UI.Registros
             SexoDropDownList.Text = cliente.Sexo;
             TelefonoTextBox.Text = cliente.Telefono;
             BalanceTextBox.Text = cliente.Balance.ToString();
-
         }
 
         private void Limpiar()
@@ -161,7 +166,14 @@ namespace SystemsOfSalesWeb.UI.Registros
             SexoDropDownList.SelectedIndex = 0;
             TelefonoTextBox.Text = "";
             BalanceTextBox.Text = "";
-        }  
+        }
 
+        protected void SexoCustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (args.Value.Equals(condicion))
+                args.IsValid = false;
+            else
+                args.IsValid = true;
+        }
     }
 }

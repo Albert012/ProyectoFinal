@@ -63,7 +63,7 @@ namespace BLL
                     }
                     else
                     {
-                        //contexto.Detalle.Add(item);
+                        contexto.FacturasDetalles.Add(item);
                         
                     }
                 }
@@ -96,7 +96,7 @@ namespace BLL
                     contexto.Productos.Find(item.ProductoId).Inventario += item.Cantidad;
                     
                 }
-                //contexto.Detalle.RemoveRange(contexto.Detalle.Where(d => d.FacturaId == id));
+                contexto.FacturasDetalles.RemoveRange(contexto.FacturasDetalles.Where(d => d.FacturaId == id));
                 contexto.Facturas.Remove(facturas);
                 contexto.SaveChanges();
                 paso = true;
@@ -172,7 +172,7 @@ namespace BLL
 
             try
             {
-                //list = contexto.Detalle.Where(expression).ToList();
+                list = contexto.FacturasDetalles.Where(expression).ToList();
             }
             catch (Exception)
             {

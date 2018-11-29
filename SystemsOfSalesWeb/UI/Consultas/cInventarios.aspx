@@ -10,7 +10,6 @@
             <asp:DropDownList ID="FiltroDropDownList" CssClass="form-control" runat="server" >
                 <asp:ListItem></asp:ListItem>
                 <asp:ListItem>InventarioId</asp:ListItem>
-                <asp:ListItem>Fecha</asp:ListItem>
                 <asp:ListItem>ProductoId</asp:ListItem>
             </asp:DropDownList>
         </div>

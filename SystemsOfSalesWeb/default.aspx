@@ -4,11 +4,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentCP" runat="server">
     <div class="container">
-        <div class="jumbotron">
+        <div class="jumbotron text-black-50">
             <h1>System Of Sales</h1>
             <p class="lead">System Of Sales, es un software de facturacion de productos en linea.</p>
+            <img src="Background/fondo.jpg" class=" img-rounded img-responsive" alt="fondo" width="1080" height="900" />
         </div>
-        <img src="Background/fondo.jpg" class=" img-rounded img-responsive" alt="fondo" width="1000" height="900" />
+        
         
     </div>
 

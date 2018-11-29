@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace BLL
@@ -18,10 +19,16 @@ namespace BLL
             try
             {
                 Inventarios inventario = contexto.Inventarios.Find(id);
-                contexto.Productos.Find(inventario.ProductoId).Inventario -= inventario.Cantidad;
-                contexto.Inventarios.Remove(inventario);
-                contexto.SaveChanges();
-                paso = true;
+
+                if(inventario != null)
+                {
+                    contexto.Productos.Find(inventario.ProductoId).Inventario -= inventario.Cantidad;
+                    contexto.Inventarios.Remove(inventario);
+                }
+
+
+                if (contexto.SaveChanges() > 0)
+                { paso = true; }
             }
             catch(Exception)
             {
@@ -70,16 +77,16 @@ namespace BLL
             InventarioRepositorio repositorio = new InventarioRepositorio();
             try
             {
-                //contexto.Entry(inventario).State = EntityState.Modified;
-
+                contexto.Entry(inventario).State = EntityState.Modified;
                 Inventarios Ant = repositorio.Buscar(inventario.InventarioId);
                 var Producto = contexto.Productos.Find(inventario.ProductoId);
+
                 var ProductoAnt = contexto.Productos.Find(Ant.ProductoId);
 
                 if(inventario.ProductoId != Ant.ProductoId)
                 {
-                    Producto.Inventario += inventario.Cantidad;
                     ProductoAnt.Inventario -= Ant.Cantidad;
+                    Producto.Inventario += inventario.Cantidad;                    
                 }
                 else
                 {
@@ -106,7 +113,46 @@ namespace BLL
 
         public override Inventarios Buscar(int id)
         {
-            return base.Buscar(id);
+            Contexto contexto = new Contexto();
+            Inventarios inventario = new Inventarios();
+
+            try
+            {
+                inventario = contexto.Inventarios.Find(id);
+
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return inventario;
+        }
+
+        public override List<Inventarios> GetList(Expression<Func<Inventarios, bool>> expression)
+        {
+            Contexto contexto = new Contexto();
+            List<Inventarios> inventario = new List<Inventarios>();
+
+            try
+            {
+                inventario = contexto.Inventarios.Where(expression).ToList();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+
+            return inventario;
         }
     }
 }

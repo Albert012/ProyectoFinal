@@ -6,12 +6,12 @@ using System.Text;
 
 namespace Entidades
 {
+    [Serializable]
     public class Productos
     {
         [Key]
         public int ProductoId { get; set; }
-        public DateTime FechaRegistro { get; set; }
-        public DateTime FechaVencimiento { get; set; }
+        public DateTime FechaRegistro { get; set; }       
         public string Descripcion { get; set; }
         public Decimal Costo { get; set; }
         public Decimal Precio { get; set; }

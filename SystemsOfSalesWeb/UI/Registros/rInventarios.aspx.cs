@@ -12,102 +12,51 @@ namespace SystemsOfSalesWeb.UI.Registros
 {
     public partial class rInventarios : System.Web.UI.Page
     {
+        string condicion = "[Seleccione]";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            LlenaDropDown();
+            
 
             if (!Page.IsPostBack)
             {
                 FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 int id = Utils.ToInt(Request.QueryString["id"]);
-
+                LlenaDropDown();
                 if (id > 0)
                 {
                     InventarioRepositorio repositorio = new InventarioRepositorio();
                     var inventario = repositorio.Buscar(id);
 
                     if (inventario != null)
-                        MostrarMensaje(TiposMensaje.Error, "Registro No Encontrado");
+                        Utils.MostrarMensaje(this, "No Hay Resultado", "Error", "error");
                     else
                         LlenaCampos(inventario);
                 }
             }
         }
-
-        protected void NuevoButton_Click(object sender, EventArgs e)
-        {
-            Limpiar();
-        }
-
-        protected void GuadarButton_Click(object sender, EventArgs e)
-        {
-            InventarioRepositorio repositorio = new InventarioRepositorio();
-            Inventarios inventario = repositorio.Buscar(Utils.ToInt(InventarioIdTextBox.Text));
-
-            if (inventario == null)
-            {
-                if (repositorio.Guardar(LlenaClase()))
-                {
-                    MostrarMensaje(TiposMensaje.Sucess, "Guardado Correctamente");
-                    Limpiar();
-                }
-                else
-                {
-                    MostrarMensaje(TiposMensaje.Error, "No Se Pudo Guardar");
-                    Limpiar();
-                }
-            }
-            else
-            {
-                if (repositorio.Modificar(LlenaClase()))
-                {
-                    MostrarMensaje(TiposMensaje.Sucess, "Modificado Correctamente");
-                    Limpiar();
-                }
-                else
-                {
-                    MostrarMensaje(TiposMensaje.Error, "No Se Pudo Modificar");
-                    Limpiar();
-                }
-
-            }
-
-
-        }
-
-        protected void EliminarButton_Click(object sender, EventArgs e)
-        {
-            InventarioRepositorio repositorio = new InventarioRepositorio();
-            Inventarios inventario = repositorio.Buscar(Utils.ToInt(InventarioIdTextBox.Text));
-
-            if (inventario != null)
-            {
-                repositorio.Eliminar(inventario.InventarioId);
-                MostrarMensaje(TiposMensaje.Sucess, "Eliminado Correctamente");
-                Limpiar();
-            }
-            else
-            {
-                MostrarMensaje(TiposMensaje.Error, "No Se Pudo Eliminar");
-                Limpiar();
-            }
-        }
-
+        
         protected void BuscarLinkButton_Click(object sender, EventArgs e)
         {
             InventarioRepositorio repositorio = new InventarioRepositorio();
             Inventarios inventario = repositorio.Buscar(Utils.ToInt(InventarioIdTextBox.Text));
 
-            if(inventario != null)
+            if (IsValid)
             {
-                Limpiar();
-                LlenaCampos(inventario);
+                if (inventario != null)
+                {
+                    Utils.MostrarMensaje(this, "Hay Resultado", "Exito!!", "info");
+                    Limpiar();
+                    LlenaCampos(inventario);
+                }
+                else
+                {
+                    Utils.MostrarMensaje(this, "No Hay Resultado", "Error", "error");
+                    Limpiar();
+                }
             }
-            else
-            {
-                MostrarMensaje(TiposMensaje.Error, "No Se Pudo Encontrar");
-                Limpiar();
-            }
+
+
 
         }
 
@@ -141,26 +90,88 @@ namespace SystemsOfSalesWeb.UI.Registros
             ProductoDropDownList.DataSource = repositorio.GetList(p => true);
             ProductoDropDownList.DataValueField = "ProductoId";
             ProductoDropDownList.DataTextField = "Descripcion";
+            ProductoDropDownList.AppendDataBoundItems = true;
             ProductoDropDownList.DataBind();
         }
 
         private void Limpiar()
         {
             InventarioIdTextBox.Text = "";
-            FechaTextBox.Text = "";
+            FechaTextBox.Text  = DateTime.Now.ToString("yyyy-MM-dd");
             ProductoDropDownList.SelectedIndex = 0;
             CantidadTextBox.Text = "";
 
         }
 
-        void MostrarMensaje(TiposMensaje tipo, string msj)
+        protected void NuevoLinkButton_Click(object sender, EventArgs e)
         {
-            ErroLabel.Text = msj;
-            if (tipo == TiposMensaje.Sucess)
-                ErroLabel.CssClass = "alert-success";
-            else
-                ErroLabel.CssClass = "alert-danger";
+            Limpiar();
         }
 
+        protected void GuardarLinkButton_Click(object sender, EventArgs e)
+        {
+            InventarioRepositorio repositorio = new InventarioRepositorio();
+            Inventarios inventario = repositorio.Buscar(Utils.ToInt(InventarioIdTextBox.Text));
+
+            if (IsValid)
+            {
+                if (inventario == null)
+                {
+                    if (repositorio.Guardar(LlenaClase()))
+                    {
+                        Utils.MostrarMensaje(this, "Guardado", "Exito!!", "success");
+                        Limpiar();
+                    }
+                    else
+                    {
+                        Utils.MostrarMensaje(this, "No Guardado", "Error", "error");
+                        Limpiar();
+                    }
+                }
+                else
+                {
+                    if (repositorio.Modificar(LlenaClase()))
+                    {
+                        Utils.MostrarMensaje(this, "Modificado", "Exito!!", "info");
+                        Limpiar();
+                    }
+                    else
+                    {
+                        Utils.MostrarMensaje(this, "No Modificado", "Error", "error");
+                        Limpiar();
+                    }
+
+                }
+            }
+        }
+
+        protected void EliminarLinkButton_Click(object sender, EventArgs e)
+        {
+            InventarioRepositorio repositorio = new InventarioRepositorio();
+            Inventarios inventario = repositorio.Buscar(Utils.ToInt(InventarioIdTextBox.Text));
+
+            if (IsValid)
+            {
+                if (inventario != null)
+                {
+                    repositorio.Eliminar(inventario.InventarioId);
+                    Utils.MostrarMensaje(this, "Eliminado", "Exito!!", "success");
+                    Limpiar();
+                }
+                else
+                {
+                    Utils.MostrarMensaje(this, "No Eliminado", "Error", "error");
+                    Limpiar();
+                }
+            }
+        }
+
+        protected void CVProducto_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            if (args.Value.Equals(condicion))
+                args.IsValid = false;
+            else
+                args.IsValid = true;
+        }
     }
 }

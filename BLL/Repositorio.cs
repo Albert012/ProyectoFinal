@@ -11,17 +11,6 @@ namespace BLL
 {
     public class Repositorio<T> : IRepository<T> where T : class
     {
-        //internal Contexto contexto;
-
-        //public Repositorio()
-        //{
-        //   contexto = new Contexto();
-        //}
-
-        //public void Dispose()
-        //{
-        //    contexto.Dispose();
-        //}
 
         public virtual bool Guardar(T entity)
         {
@@ -29,7 +18,7 @@ namespace BLL
             Contexto contexto = new Contexto();
             try
             {
-                
+
                 if (contexto.Set<T>().Add(entity) != null)
                 {
                     contexto.SaveChanges();
@@ -46,7 +35,7 @@ namespace BLL
             {
                 contexto.Dispose();
             }
-            
+
 
             return paso;
         }
@@ -57,7 +46,7 @@ namespace BLL
             Contexto contexto = new Contexto();
             try
             {
-                
+
                 contexto.Entry(entity).State = EntityState.Modified;
                 if (contexto.SaveChanges() > 0)
                 {
@@ -75,7 +64,7 @@ namespace BLL
                 contexto.Dispose();
             }
 
-            
+
 
             return paso;
         }
@@ -86,7 +75,7 @@ namespace BLL
             Contexto contexto = new Contexto();
             try
             {
-                
+
                 T entity = contexto.Set<T>().Find(id);
                 contexto.Set<T>().Remove(entity);
                 if (contexto.SaveChanges() > 0)
@@ -113,7 +102,7 @@ namespace BLL
             Contexto contexto = new Contexto();
             try
             {
-                
+
                 entity = contexto.Set<T>().Find(id);
             }
             catch (Exception)
@@ -134,7 +123,7 @@ namespace BLL
             Contexto contexto = new Contexto();
             try
             {
-                
+
                 list = contexto.Set<T>().Where(expression).ToList();
 
             }
@@ -149,6 +138,6 @@ namespace BLL
             return list;
         }
 
-        
+
     }
 }

@@ -8,6 +8,45 @@
     border-radius: 6px;
 }
 
+{
+    max-width: 25rem;
+}
+
+@media(min-width: 76dia(min-width: 768px)
+{
+    .navbar-left{
+        float: left !important;
+    }
+
+    .navbar-right{
+        float:right !important;
+        margin-right: -15px;
+    }
+
+    .navbar-right ~ .navbar-right{
+        margin-left: 0;
+    }
+
+}
+
+.navbar-top-links .dropdown-user{
+    left: auto;
+}
+
+.btn-group > .btn-lg + .dropdown-toggle{
+    padding-right: 12px;
+    padding-left: 12px;
+}
+
+.navbar-left{
+    float: left !important;
+}
+
+.navbar-right{
+    float: right !important;
+    margin-right: -15px;
+}
+
 
 .panel {
     margin-bottom: 20px;
@@ -76,6 +115,10 @@
     border-bottom: 1px solid transparent;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
+}
+
+.panel-login{
+    margin-top: 50%;
 }
 
 .panel-title {

@@ -7,12 +7,14 @@ using System.Text;
 
 namespace Entidades
 {
+    [Serializable]
     public class FacturasDetalles
     {
         [Key]
         public int Id { get; set; }
         public int FacturaId { get; set; }
-        public int ProductoId { get; set; }       
+        public int ProductoId { get; set; }
+        public string Descripcion { get; set; }
         public int Cantidad { get; set; }
         public Decimal Precio { get; set; }
         public Decimal Importe { get; set; }
@@ -26,15 +28,16 @@ namespace Entidades
             Id = 0;
         }
 
-        public FacturasDetalles(int id, int facturaId, int productoId, int cantidad, decimal precio, decimal importe)
+        public FacturasDetalles(int id, int facturaId, int productoId, string descripcion, int cantidad, decimal precio, decimal importe)
         {
             this.Id = id;
             this.FacturaId = facturaId;
             this.ProductoId = productoId;
+            this.Descripcion = descripcion;
             this.Cantidad = cantidad;
             this.Precio = precio;
             this.Importe = importe;
-            //this.Producto = producto;
+            
         }
     }
 }

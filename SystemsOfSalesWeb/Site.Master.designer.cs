@@ -22,6 +22,15 @@ namespace SystemsOfSalesWeb {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
+        /// LoginName2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LoginName LoginName2;
+        
+        /// <summary>
         /// MainContentCP control.
         /// </summary>
         /// <remarks>
@@ -31,12 +40,12 @@ namespace SystemsOfSalesWeb {
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContentCP;
         
         /// <summary>
-        /// LoginStatus control.
+        /// LogOut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginStatus LoginStatus;
+        protected global::System.Web.UI.WebControls.LoginStatus LogOut;
     }
 }

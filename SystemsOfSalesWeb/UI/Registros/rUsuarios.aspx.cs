@@ -18,6 +18,7 @@ namespace SystemsOfSalesWeb.UI.Registros
         {
             if(!Page.IsPostBack)
             {
+                LlenarDropDown();
                 FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 int id = Utils.ToInt(Request.QueryString["id"]);
 
@@ -27,130 +28,53 @@ namespace SystemsOfSalesWeb.UI.Registros
                     var usuario = repositorio.Buscar(id);
 
                     if (usuario == null)
-                        MostrarMensaje(TiposMensaje.Error, "Registro No Encontrado");
+                        Utils.MostrarMensaje(this, "No Hay Resultado", "Error", "error");
                     else
                         LlenaCampos(usuario);
                 }
             }
 
-        }
-
-        protected void NuevoButton_Click(object sender, EventArgs e)
-        {
-            Limpiar();
-        }
-
-        protected void GuadarButton_Click(object sender, EventArgs e)
-        {
-            Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>();
-
-            Usuarios usuarios = repositorio.Buscar(Utils.ToInt(UsuarioIdTextBox.Text));
-
-            //usuarios = LLenaClase();
-
-            if(usuarios == null)
-            {
-                if (repositorio.Guardar(LLenaClase()))
-                {
-                    MostrarMensaje(TiposMensaje.Sucess, "Guardado Correctamente");
-                    Limpiar();
-                }
-                else
-                {
-                    MostrarMensaje(TiposMensaje.Error, "No Se Pudo Guardar");
-                    Limpiar();
-                }
-            }
-            else
-            {
-                if (repositorio.Modificar(LLenaClase()))
-                {
-                    MostrarMensaje(TiposMensaje.Sucess, "Modificado Correctamente");
-                    Limpiar();
-                }
-                else
-                {
-                    MostrarMensaje(TiposMensaje.Error, "No Se Pudo Modificar");
-                    Limpiar();
-                }
-
-            }
-
-
-            //bool paso = false;
-
-            //if (usuarios.UsuarioId == 0)
-            //    paso = repositorio.Guardar(usuarios);
-            //else
-            //    paso = repositorio.Modificar(usuarios);
-
-
-            //if (paso)
-            //{
-            //    MostrarMensaje(TiposMensaje.Sucess, "Guardado Correctamente");
-            //    Limpiar();
-            //}
-            //else
-            //    MostrarMensaje(TiposMensaje.Error, "No Se Pudo Guardar Correctamente");
-
-        }
-
-        protected void EliminarButton_Click(object sender, EventArgs e)
-        {
-            Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>();
-            Usuarios usuarios = repositorio.Buscar(Utils.ToInt(UsuarioIdTextBox.Text));
-
-            if(usuarios != null)
-            {
-                repositorio.Eliminar(usuarios.UsuarioId);
-                MostrarMensaje(TiposMensaje.Sucess, "Guardado Correctamente");
-                Limpiar();
-            }
-            else
-            {
-                MostrarMensaje(TiposMensaje.Error, "No Se Pudo Eliminar");
-                Limpiar();
-            }
-
-
-        }
-
+        }        
 
         protected void BuscarLinkButton_Click(object sender, EventArgs e)
         {
             Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>();
             Usuarios usuarios = repositorio.Buscar(Utils.ToInt(UsuarioIdTextBox.Text));
 
-            if(usuarios != null)
+            if(IsValid)
             {
-                Limpiar();
-                LlenaCampos(usuarios);
+                if (usuarios != null)
+                {
+                    Limpiar();
+                    LlenaCampos(usuarios);
+                }
+                else
+                {
+                    Limpiar();
+                    Utils.MostrarMensaje(this, "No Hay Resultado", "Error", "error");
+                }
             }
-            else
-            {
-                Limpiar();
-                MostrarMensaje(TiposMensaje.Error, "No Se Pudo Encontrar");
-            }
-
-
         }
-
-        protected void BuscarLinkButton_Click1(object sender, EventArgs e)
-        {
-
-        }
-
-
+           
 
         //Metodos
 
+        private void LlenarDropDown()
+        {
+
+            
+            TipoUsuarioDropDownList.DataSource = Enum.GetValues(typeof(TipoUsuario));
+            TipoUsuarioDropDownList.AppendDataBoundItems = true;
+            TipoUsuarioDropDownList.DataBind();
+            
+        }
 
         private Usuarios LLenaClase()
         {
             Usuarios usuario = new Usuarios();
             usuario.UsuarioId = Utils.ToInt(UsuarioIdTextBox.Text);
             usuario.Fecha = Utils.ToDateTime(FechaTextBox.Text);
-            usuario.Usuario = UsuarioTextBox.Text;
+            usuario.Email = EmailTextBox.Text;
             usuario.NombreUsuario = NombreTextBox.Text;
             usuario.Contrasena = ContrasenaTextBox.Text;
             usuario.TipoUsuario = TipoUsuarioDropDownList.Text;
@@ -162,7 +86,7 @@ namespace SystemsOfSalesWeb.UI.Registros
         {
             UsuarioIdTextBox.Text = usuario.UsuarioId.ToString();
             FechaTextBox.Text = usuario.Fecha.ToString();
-            UsuarioTextBox.Text = usuario.Usuario;
+            EmailTextBox.Text = usuario.Email; ;
             NombreTextBox.Text = usuario.NombreUsuario;
             TipoUsuarioDropDownList.Text = usuario.TipoUsuario;
             ContrasenaTextBox.Text = usuario.Contrasena;
@@ -172,22 +96,13 @@ namespace SystemsOfSalesWeb.UI.Registros
         private void Limpiar()
         {
             UsuarioIdTextBox.Text = "";
-            FechaTextBox.Text = "";
-            UsuarioTextBox.Text = "";
+            FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            EmailTextBox.Text = "";
             NombreTextBox.Text = "";
             ContrasenaTextBox.Text = "";
             ConfirmarTextBox.Text = "";
             TipoUsuarioDropDownList.SelectedIndex = 0;
-        }
-
-        void MostrarMensaje(TiposMensaje tipo, string mensaje)
-        {
-            ErrorLabel.Text = mensaje;
-            if (tipo == TiposMensaje.Sucess)
-                ErrorLabel.CssClass = "alert-success";
-            else
-                ErrorLabel.CssClass = "alert-danger";
-        }
+        }       
 
         protected void CustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
         {
@@ -207,6 +122,69 @@ namespace SystemsOfSalesWeb.UI.Registros
                 args.IsValid = false;
             else
                 args.IsValid = true;
+        }
+
+        protected void NuevoLinkButton_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
+
+        protected void GuardarLinkButton_Click(object sender, EventArgs e)
+        {
+            Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>();
+            Usuarios usuarios = repositorio.Buscar(Utils.ToInt(UsuarioIdTextBox.Text));
+
+            if (IsValid)
+            {
+                if (usuarios != null)
+                {
+                    if (repositorio.Modificar(LLenaClase()))
+                    {
+                        Utils.MostrarMensaje(this, "Modificado", "Exito!!", "info");
+                        Limpiar();
+                    }
+                    else
+                    {
+                        Utils.MostrarMensaje(this, "No Modificado", "Error", "error");
+                        Limpiar();
+                    }
+
+                }
+                else
+                {
+                    if (repositorio.Guardar(LLenaClase()))
+                    {
+                        Utils.MostrarMensaje(this, "Guardado", "Exito!!", "success");
+                        Limpiar();
+                    }
+                    else
+                    {
+                        Utils.MostrarMensaje(this, "No Guardado", "Error", "error");
+                        Limpiar();
+                    }
+                }
+            }
+        }
+
+        protected void EliminarLinkButton_Click(object sender, EventArgs e)
+        {
+            Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>();
+            Usuarios usuarios = repositorio.Buscar(Utils.ToInt(UsuarioIdTextBox.Text));
+
+            if (IsValid)
+            {
+                if (usuarios == null)
+                {
+                    Utils.MostrarMensaje(this, "No Eliminado", "Error", "error");
+                    Limpiar();
+                }
+                else
+                {
+                    repositorio.Eliminar(usuarios.UsuarioId);
+                    Utils.MostrarMensaje(this, "Eliminado", "Exito!!", "success");
+                    Limpiar();
+                }
+            }
         }
 
 

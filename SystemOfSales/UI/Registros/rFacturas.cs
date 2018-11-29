@@ -358,6 +358,7 @@ namespace SystemOfSales.UI.Registros
                 id: 0,
                 facturaId: (int)IdNumericUpDown.Value,
                 productoId: (int)ProductoComboBox.SelectedValue,
+                descripcion: ProductoComboBox.Text,
                 cantidad: (int)CantidadNumericUpDown.Value,
                 precio: PrecioNumericUpDown.Value,
                 importe: ImporteNumericUpDown.Value               
@@ -452,6 +453,11 @@ namespace SystemOfSales.UI.Registros
 
             ReciboReviewer reciboReviewer = new ReciboReviewer(detalles);
             reciboReviewer.ShowDialog();
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 

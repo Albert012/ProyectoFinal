@@ -58,30 +58,30 @@ namespace SystemsOfSalesWeb.UI.Registros {
         protected global::System.Web.UI.WebControls.TextBox CantidadTextBox;
         
         /// <summary>
-        /// NuevoButton control.
+        /// NuevoLinkButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button NuevoButton;
+        protected global::System.Web.UI.WebControls.LinkButton NuevoLinkButton;
         
         /// <summary>
-        /// GuadarButton control.
+        /// GuardarLinkButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GuadarButton;
+        protected global::System.Web.UI.WebControls.LinkButton GuardarLinkButton;
         
         /// <summary>
-        /// EliminarButton control.
+        /// EliminarLinkButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EliminarButton;
+        protected global::System.Web.UI.WebControls.LinkButton EliminarLinkButton;
     }
 }

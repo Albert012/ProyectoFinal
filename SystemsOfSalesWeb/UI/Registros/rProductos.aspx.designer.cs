@@ -85,6 +85,15 @@ namespace SystemsOfSalesWeb.UI.Registros {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
         
         /// <summary>
+        /// CostoCustomValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CostoCustomValidator;
+        
+        /// <summary>
         /// PrecioTextBox control.
         /// </summary>
         /// <remarks>
@@ -101,6 +110,15 @@ namespace SystemsOfSalesWeb.UI.Registros {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        
+        /// <summary>
+        /// PrecioCustomValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator PrecioCustomValidator;
         
         /// <summary>
         /// GanaciasTextBox control.
@@ -121,84 +139,30 @@ namespace SystemsOfSalesWeb.UI.Registros {
         protected global::System.Web.UI.WebControls.TextBox InventarioTextBox;
         
         /// <summary>
-        /// LinkButton control.
+        /// NuevoLinkButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton;
+        protected global::System.Web.UI.WebControls.LinkButton NuevoLinkButton;
         
         /// <summary>
-        /// InventarioIdTextBox control.
+        /// GuardarLinkButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox InventarioIdTextBox;
+        protected global::System.Web.UI.WebControls.LinkButton GuardarLinkButton;
         
         /// <summary>
-        /// FechaInventarioTextBox control.
+        /// EliminarLinkButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FechaInventarioTextBox;
-        
-        /// <summary>
-        /// ProductoDropDownList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ProductoDropDownList;
-        
-        /// <summary>
-        /// CantidadTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CantidadTextBox;
-        
-        /// <summary>
-        /// AddButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddButton;
-        
-        /// <summary>
-        /// NuevoButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button NuevoButton;
-        
-        /// <summary>
-        /// GuadarButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button GuadarButton;
-        
-        /// <summary>
-        /// EliminarButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EliminarButton;
+        protected global::System.Web.UI.WebControls.LinkButton EliminarLinkButton;
     }
 }

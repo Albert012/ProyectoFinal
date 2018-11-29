@@ -3,20 +3,21 @@ go
 use SystemOfSalesDB
 go
 
---select * from Productos
+
 
 create table Usuarios(
 UsuarioId int identity primary key,
 Fecha date,
-Usuario varchar(15),
+Email varchar(30),
+Usuario varchar(20),
 NombreUsuario varchar(20),
 TipoUsuario varchar(15),
 Contrasena varchar(10)
 );
 go
 
-insert into Usuarios(Fecha, Usuario,NombreUsuario, TipoUsuario, Contrasena) values ('2018/07/28','root','Administrador','ADMINISTRADOR','123');
-select * from Usuarios
+insert into Usuarios(Fecha, Email, Usuario,NombreUsuario, TipoUsuario, Contrasena) values ('2018/11/21','albertrosario@gmail.com','ADJ','Alber De Jesus','Administrador','123');
+insert into Usuarios(Fecha, Email, Usuario,NombreUsuario, TipoUsuario, Contrasena) values ('2018/11/21','jesusmendoza@gmail.com','Jesus06','Jesus Mendoza','Cliente','1234');
 go
 
 create table Clientes(
@@ -29,7 +30,7 @@ Email varchar(55),
 Cedula varchar(14),
 Sexo varchar(10),
 Telefono varchar(13),
-Balance money
+Balance decimal(16,2)
 );
 
 go
@@ -49,7 +50,7 @@ PagoId int identity primary key,
 Fecha date,
 ClienteId int not null,
 Nombres varchar(30),
-Total money
+Total decimal(16,2)
 );
 
 
@@ -58,11 +59,10 @@ go
 create table Productos(
 ProductoId int identity primary key,
 FechaRegistro date,
-FechaVencimiento date,
 Descripcion varchar(30),
-Costo decimal,
-Precio decimal,
-Ganancias decimal,
+Costo decimal(16,2),
+Precio decimal(16,2),
+Ganancias decimal(16,2),
 Inventario int
 );
 
@@ -72,11 +72,11 @@ create table Facturas(
 FacturaId int identity primary key,
 Fecha date,
 ClienteId int not null,
-SubTotal money,
-Itbis money,
-Total money,
-Efectivo money,
-Devuelta money
+SubTotal decimal(16,2),
+Itbis decimal(16,2),
+Total decimal(16,2),
+Efectivo decimal(16,2),
+Devuelta decimal(16,2)
 );
 
 go
@@ -85,7 +85,8 @@ create table FacturasDetalles(
 Id int identity primary key,
 FacturaId int not null,
 ProductoId int not null,
+Descripcion varchar(50),
 Cantidad int,
-Precio money,
-Importe money,
+Precio decimal(16,2),
+Importe decimal(16,2),
 );

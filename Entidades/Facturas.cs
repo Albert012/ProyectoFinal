@@ -7,6 +7,7 @@ using System.Text;
 
 namespace Entidades
 {
+    [Serializable]
     public class Facturas
     {
         [Key]
@@ -34,6 +35,11 @@ namespace Entidades
             Efectivo = 0;
             Devuelta = 0;
             this.Detalles = new List<FacturasDetalles>();
+        }
+
+        public void AgregarDetalle(int id, int facturaId, int productoId, string descripcion,  int cantidad, decimal precio, decimal importe)
+        {
+            this.Detalles.Add(new FacturasDetalles(id, facturaId, productoId, descripcion, cantidad, precio, importe));
         }
 
     }

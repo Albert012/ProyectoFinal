@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Entidades
 {
+    [Serializable]
     public class Clientes
     {
         [Key]
@@ -31,14 +32,13 @@ namespace Entidades
             Cedula = string.Empty;
             Email = string.Empty;
             Sexo = string.Empty;
-            Telefono = string.Empty;
-            //Ingresos = 0;
+            Telefono = string.Empty;            
             Balance = 0;
         }
 
         public override string ToString()
         {
-            return Nombres;
+            return Nombres + Apellidos ;
         }
     }
 }
