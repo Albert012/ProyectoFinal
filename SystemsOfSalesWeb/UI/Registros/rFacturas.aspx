@@ -32,6 +32,14 @@
                                      Buscar
                             </asp:LinkButton>
                         </div>
+
+                        <div class="form-group align-content-end col-md-6 ">
+                            <asp:Label Text="Condicion" runat="server" />
+                            <asp:RadioButtonList runat="server" RepeatDirection="Vertical" OnSelectedIndexChanged="CondicionRadioButton_SelectedIndexChanged" ID="CondicionRadioButton" AutoPostBack="true" ti CssClass="text-primary">
+                                <asp:ListItem Selected="True" Value="1" Text="Credito" ></asp:ListItem>
+                                <asp:ListItem Value ="0" Text="Contado"></asp:ListItem>
+                            </asp:RadioButtonList>
+                        </div>
                     </div>
 
                     <div class="form-row">

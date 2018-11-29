@@ -125,6 +125,8 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="UI\Reportes\ClientesReportViewer.aspx" />
+    <Content Include="UI\Reportes\InventariosReportViewer.aspx" />
+    <Content Include="UI\Reportes\PagosReporteViewer.aspx" />
     <Content Include="UI\Reportes\UsuariosReportViewer.aspx" />
     <Content Include="Users\rUsuarios.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -259,6 +261,20 @@
     </Compile>
     <Compile Include="UI\Reportes\ClientesReportViewer.aspx.designer.cs">
       <DependentUpon>ClientesReportViewer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\InventariosReportViewer.aspx.cs">
+      <DependentUpon>InventariosReportViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\InventariosReportViewer.aspx.designer.cs">
+      <DependentUpon>InventariosReportViewer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Reportes\PagosReporteViewer.aspx.cs">
+      <DependentUpon>PagosReporteViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\Reportes\PagosReporteViewer.aspx.designer.cs">
+      <DependentUpon>PagosReporteViewer.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\Reportes\UsuariosReportViewer.aspx.cs">
       <DependentUpon>UsuariosReportViewer.aspx</DependentUpon>
@@ -401,6 +417,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UI\Reportes\ClientesReport.rdlc" />
+    <EmbeddedResource Include="UI\Reportes\InventariosReport.rdlc" />
+    <EmbeddedResource Include="UI\Reportes\PagosReport.rdlc" />
     <EmbeddedResource Include="UI\Reportes\ProductosReport.rdlc" />
     <EmbeddedResource Include="UI\Reportes\UsuariosReport.rdlc" />
   </ItemGroup>

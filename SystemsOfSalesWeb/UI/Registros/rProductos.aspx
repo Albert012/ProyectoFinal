@@ -48,7 +48,7 @@
                 <%--Precio--%>
                 <div class="form-group col-md-2">
                     <label for="PrecioTextBox">Precio</label>
-                    <asp:TextBox ID="PrecioTextBox" class="form-control input-sm" AutoCompleteType="Disabled" TextMode="Number" runat="server" placeholder="0" OnTextChanged="PrecioTextBox_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="PrecioTextBox" class="form-control input-sm" AutoPostBack="true" AutoCompleteType="Disabled" TextMode="Number" runat="server" placeholder="0" OnTextChanged="PrecioTextBox_TextChanged"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="PrecioTextBox" ValidationGroup="Guardar" runat="server" ErrorMessage="*" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                     <asp:CustomValidator ID="PrecioCustomValidator" runat="server" ControlToValidate="PrecioTextBox" ValidationGroup="Guardar" ForeColor="Red" Display="Dynamic" ErrorMessage="El Precio No Puede Ser Menor Que El Costo" OnServerValidate="PrecioCustomValidator_ServerValidate"></asp:CustomValidator>
                 </div>
@@ -58,7 +58,7 @@
                 <%--Ganacias--%>
                 <div class="form-group col-md-2">
                     <label for="GanaciasTextBox">Ganacias</label>
-                    <asp:TextBox ID="GanaciasTextBox" class="form-control input-sm" TextMode="Number" ReadOnly="true" runat="server" placeholder="0" OnTextChanged="GanaciasTextBox_TextChanged"></asp:TextBox>
+                    <asp:TextBox ID="GanaciasTextBox" class="form-control input-sm" AutoPostBack="true" TextMode="Number" ReadOnly="true" runat="server" placeholder="0" OnTextChanged="GanaciasTextBox_TextChanged"></asp:TextBox>
                 </div>
 
                 <%--Inventario--%>

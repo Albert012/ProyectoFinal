@@ -16,12 +16,12 @@ namespace SystemsOfSalesWeb.UI.Registros
         {
             if (!Page.IsPostBack)
             {
-                
-                FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");                
-                
+
+                FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
+
                 int id = Utils.ToInt(Request.QueryString["id"]);
 
-                if(id > 0)
+                if (id > 0)
                 {
                     Repositorio<Productos> repositorio = new Repositorio<Productos>();
                     var producto = repositorio.Buscar(id);
@@ -32,28 +32,29 @@ namespace SystemsOfSalesWeb.UI.Registros
                         LlenaCampos(producto);
                 }
             }
-        }               
+        }
 
         protected void BuscarLinkButton_Click(object sender, EventArgs e)
         {
             Repositorio<Productos> repositorio = new Repositorio<Productos>();
             Productos producto = repositorio.Buscar(Utils.ToInt(ProductoIdTextBox.Text));
-
-            if (producto != null)
+            if (IsValid)
             {
-                Utils.MostrarMensaje(this, "Hay Resultado", "Exito!!", "info");
-                Limpiar();
-                LlenaCampos(producto);
+                if (producto != null)
+                {
+                    Utils.MostrarMensaje(this, "Hay Resultado", "Exito!!", "info");
+                    Limpiar();
+                    LlenaCampos(producto);
+                }
+                else
+                {
+                    Utils.MostrarMensaje(this, "No Hay Resultado", "Fallo!!", "error");
+                    Limpiar();
+                }
             }
-            else
-            {
-                Utils.MostrarMensaje(this, "No Hay Resultado", "Fallo!!", "error");
-                Limpiar();
-            }
-
         }
 
-                     
+
         //Metodos
 
         private Productos LlenaClase()
@@ -65,7 +66,7 @@ namespace SystemsOfSalesWeb.UI.Registros
             producto.Descripcion = DescripcionTextBox.Text;
             producto.Costo = Utils.ToDecimal(CostoTextBox.Text);
             producto.Precio = Utils.ToDecimal(PrecioTextBox.Text);
-            producto.Ganancias = Utils.ToDecimal( GanaciasTextBox.Text);
+            producto.Ganancias = Utils.ToDecimal(GanaciasTextBox.Text);
             producto.Inventario = Utils.ToInt(InventarioTextBox.Text);
 
             return producto;
@@ -93,18 +94,18 @@ namespace SystemsOfSalesWeb.UI.Registros
             InventarioTextBox.Text = "";
 
         }
-              
-        
+
+
 
         protected void PrecioTextBox_TextChanged(object sender, EventArgs e)
         {
             if (CostoTextBox.Text != "" && PrecioTextBox.Text != "")
             {
                 var ganacias = CalculosBLL.CalcularGanancias(Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(CostoTextBox.Text));
-                
+
                 GanaciasTextBox.Text = ganacias.ToString();
             }
-                
+
             else
                 GanaciasTextBox.Text = "";
         }
@@ -115,7 +116,7 @@ namespace SystemsOfSalesWeb.UI.Registros
             {
                 var precio = CalculosBLL.CalcularPrecio(Utils.ToDecimal(CostoTextBox.Text), Utils.ToDecimal(GanaciasTextBox.Text));
 
-            }             
+            }
             else
                 PrecioTextBox.Text = "";
         }
@@ -130,32 +131,35 @@ namespace SystemsOfSalesWeb.UI.Registros
             Repositorio<Productos> repositorio = new Repositorio<Productos>();
             Productos producto = repositorio.Buscar(Utils.ToInt(ProductoIdTextBox.Text));
 
-            if (producto == null)
+            if (IsValid)
             {
-                if (repositorio.Guardar(LlenaClase()))
+                if (producto == null)
                 {
-                    Utils.MostrarMensaje(this, "Guardado", "Exito!!", "success");
-                    Limpiar();
+                    if (repositorio.Guardar(LlenaClase()))
+                    {
+                        Utils.MostrarMensaje(this, "Guardado", "Exito!!", "success");
+                        Limpiar();
+                    }
+                    else
+                    {
+                        Utils.MostrarMensaje(this, "No Guardado", "Fallo!!", "warning");
+                        Limpiar();
+                    }
                 }
                 else
                 {
-                    Utils.MostrarMensaje(this, "No Guardado", "Fallo!!", "warning");
-                    Limpiar();
-                }
-            }
-            else
-            {
-                if (repositorio.Modificar(LlenaClase()))
-                {
-                    Utils.MostrarMensaje(this, "Modificado", "Exito!!", "info");
-                    Limpiar();
-                }
-                else
-                {
-                    Utils.MostrarMensaje(this, "No Modificado", "Fallo!!", "warning");
-                    Limpiar();
-                }
+                    if (repositorio.Modificar(LlenaClase()))
+                    {
+                        Utils.MostrarMensaje(this, "Modificado", "Exito!!", "info");
+                        Limpiar();
+                    }
+                    else
+                    {
+                        Utils.MostrarMensaje(this, "No Modificado", "Fallo!!", "warning");
+                        Limpiar();
+                    }
 
+                }
             }
         }
 
@@ -163,17 +167,19 @@ namespace SystemsOfSalesWeb.UI.Registros
         {
             Repositorio<Productos> repositorio = new Repositorio<Productos>();
             Productos producto = repositorio.Buscar(Utils.ToInt(ProductoIdTextBox.Text));
-
-            if (producto != null)
+            if (IsValid)
             {
-                repositorio.Eliminar(producto.ProductoId);
-                Utils.MostrarMensaje(this, "Eliminado", "Exito!!", "success");
-                Limpiar();
-            }
-            else
-            {
-                Utils.MostrarMensaje(this, "No Eliminado", "Fallo!!", "warning");
-                Limpiar();
+                if (producto != null)
+                {
+                    repositorio.Eliminar(producto.ProductoId);
+                    Utils.MostrarMensaje(this, "Eliminado", "Exito!!", "success");
+                    Limpiar();
+                }
+                else
+                {
+                    Utils.MostrarMensaje(this, "No Eliminado", "Fallo!!", "warning");
+                    Limpiar();
+                }
             }
         }
 

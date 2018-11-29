@@ -47,8 +47,6 @@
                             <asp:Label Text="Hasta" class="text-primary" runat="server" />
                             <asp:TextBox ID="HastaTextBox" class="form-control input-group" TextMode="Date" runat="server" />
                         </div>
-
-
                     </div>
 
 

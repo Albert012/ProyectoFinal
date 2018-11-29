@@ -21,7 +21,7 @@
 
                 <%--Boton--%>
                 <div class="col-lg-1 p-0">
-                    <asp:LinkButton ID="BuscarLinkButton" CssClass="btn btn-outline-info mt-4" runat="server">
+                    <asp:LinkButton ID="BuscarLinkButton" OnClick="BuscarLinkButton_Click" CssClass="btn btn-outline-info mt-4" runat="server">
                 <span class="fas fa-search"></span>
                      Buscar
             </asp:LinkButton>

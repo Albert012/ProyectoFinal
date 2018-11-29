@@ -30,7 +30,7 @@ namespace SystemsOfSalesWeb.UI.Registros
                 LlenarDropDownListClientes();
                 //BindGrid();
                 //ViewState.Add("Factura", detalles);
-                ViewState["Factura"] = new Facturas();
+                //ViewState["Factura"] = new Facturas();
 
 
             }
@@ -93,7 +93,8 @@ namespace SystemsOfSalesWeb.UI.Registros
             ImporteTextBox.Text = "";
             MontoTextBox.Text = "";
             ViewState["Factura"] = null;
-            BindGrid();
+            FacturaGridView.DataSource = null;
+            //BindGrid();
 
         }
 
@@ -334,6 +335,11 @@ namespace SystemsOfSalesWeb.UI.Registros
                 MontoTextBox.Text = CalculosBLL.CalcularSubTotal(Utils.ToDecimal(ImporteTextBox.Text)).ToString();
             else
                 MontoTextBox.Text = "";
+        }
+
+        protected void CondicionRadioButton_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 
