@@ -13,6 +13,15 @@ namespace SystemsOfSalesWeb.UI.Consultas {
     public partial class cFacturas {
         
         /// <summary>
+        /// Panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel Panel;
+        
+        /// <summary>
         /// FiltroDropDownList control.
         /// </summary>
         /// <remarks>
@@ -47,5 +56,41 @@ namespace SystemsOfSalesWeb.UI.Consultas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton BuscarLinkButton;
+        
+        /// <summary>
+        /// DesdeTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DesdeTextBox;
+        
+        /// <summary>
+        /// HastaTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox HastaTextBox;
+        
+        /// <summary>
+        /// FacturaGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView FacturaGridView;
+        
+        /// <summary>
+        /// ImprimirLinkButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ImprimirLinkButton;
     }
 }

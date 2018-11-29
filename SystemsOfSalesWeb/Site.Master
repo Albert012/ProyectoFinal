@@ -61,7 +61,7 @@
                         <a class="dropdown-item" href="/UI/Consultas/cUsuarios.aspx"><i class="fa fa-search fa-fw"></i>Usuarios</a>
                         <a class="dropdown-item" href="/UI/Consultas/cInventarios.aspx"><i class="fa fa-search fa-fw"></i>Inventarios</a>
                         <a class="dropdown-item" href="/UI/Consultas/cFacturas.aspx"><i class="fa fa-search fa-fw"></i>Facturas</a>
-                        <a class="dropdown-item" href="/UI/Consultas/cPagos.aspx"><i class="fa fa-search fa-fw"></i>Pagos</a>
+                        <%--<a class="dropdown-item" href="/UI/Consultas/cPagos.aspx"><i class="fa fa-search fa-fw"></i>Pagos</a>--%>
 
                     </div>
                 </li>
@@ -86,7 +86,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="DropDownUsuario">
                         <a class="dropdown-item" href="/UI/Registros/rUsuarios.aspx"><i class="fa fa-users-cog fa-fw"></i>Registrarse</a>
-                        <a class="dropdown-item" href="/UI/Registros/rPagos.aspx"><i class="fa fa-credit-card fa-fw"></i>Pagar</a>
+                        <%--<a class="dropdown-item" href="/UI/Registros/rPagos.aspx"><i class="fa fa-credit-card fa-fw"></i>Pagar</a>--%>
                         <a class="dropdown-item" href="/UI/Registros/rInventarios.aspx"><i class="fa fa-cart-plus fa-fw"></i>Inventarios</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><i class="fa fa-sign-out-alt fa-fw"></i>Cerrar Session</a>                        

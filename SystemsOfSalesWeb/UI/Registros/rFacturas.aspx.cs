@@ -32,7 +32,7 @@ namespace SystemsOfSalesWeb.UI.Registros
                 LlenarDropDownListClientes();
                 //BindGrid();
                 //ViewState.Add("Factura", detalles);
-                ViewState["Factura"] = new Facturas();
+                //ViewState["Factura"] = new Facturas();
 
 
             }
@@ -80,7 +80,7 @@ namespace SystemsOfSalesWeb.UI.Registros
             factura.Fecha = Utils.ToDateTime(FechaTextBox.Text);
             factura.ClienteId = Utils.ToInt(ClienteDropDownList.SelectedValue);
             factura.Total = Utils.ToDecimal(MontoTextBox.Text);
-            factura.Detalles = (List<FacturasDetalles>)ViewState["Factura"];
+            factura.Detalles = (List<FacturasDetalles>)ViewState["Detalle"];
             return factura;
         }
 
@@ -132,7 +132,7 @@ namespace SystemsOfSalesWeb.UI.Registros
         private string SubTotal()
         {
             decimal monto = 0;
-            foreach (var item in (List<FacturasDetalles>)ViewState["Factura"] )
+            foreach (var item in (List<FacturasDetalles>)ViewState["Detalle"] )
             {
                 monto += CalculosBLL.CalcularSubTotal(item.Importe);
             }
@@ -146,7 +146,7 @@ namespace SystemsOfSalesWeb.UI.Registros
                
                 if (FacturaGridView.Rows.Count != 0)
                 {
-                    factura.Detalles = (List<FacturasDetalles>)ViewState["Factura"];
+                    factura.Detalles = (List<FacturasDetalles>)ViewState["Detalle"];
 
                 }
 
@@ -171,10 +171,10 @@ namespace SystemsOfSalesWeb.UI.Registros
                 else
                 {
                     factura.Detalles.Add(new FacturasDetalles(0, 0, Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.SelectedItem.ToString(), Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text)));
-                    ViewState["Factura"] = factura.Detalles;
+                    ViewState["Detalle"] = factura.Detalles;
                 }
                 SubTotal();
-                FacturaGridView.DataSource = ViewState["Factura"];
+                FacturaGridView.DataSource = ViewState["Detalle"];
                 FacturaGridView.DataBind();
 
 

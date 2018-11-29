@@ -33,12 +33,12 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <asp:TextBox ID="NombreTextBox" AutoCompleteType="Disabled" class="form-control input-group" placeholder="Nombres" runat="server" />
-                                <asp:RequiredFieldValidator ID="RFVNombre" ValidationGroup="Registrar" ControlToValidate="NombreTextBox" runat="server" ErrorMessage="*" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ValidationExpression="(^[a-zA-Z'.\s]{1,20}$)" ID="RFVNombre" ValidationGroup="Registrar" ControlToValidate="NombreTextBox" runat="server" ErrorMessage="*" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <asp:TextBox ID="UsuarioTextBox" AutoCompleteType="Disabled" class="form-control input-group" placeholder="Usuario" runat="server" />
-                                <asp:RequiredFieldValidator ID="RFVApellido" ValidationGroup="Registrar" ControlToValidate="UsuarioTextBox" runat="server" ErrorMessage="*" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ValidationExpression="(^[a-zA-Z'.\s]{1,20}$)" ID="RFVApellido" ValidationGroup="Registrar" ControlToValidate="UsuarioTextBox" runat="server" ErrorMessage="*" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                             </div>
                         </div>
 
