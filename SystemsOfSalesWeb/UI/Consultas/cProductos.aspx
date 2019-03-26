@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Consulta Productos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="cProductos.aspx.cs" Inherits="SystemsOfSalesWeb.UI.Consultas.cProductos" %>
+﻿<%@ Page Title="Consulta Productos" Language="C#" MasterPageFile="~/MainSite.Master" AutoEventWireup="true" CodeBehind="cProductos.aspx.cs" Inherits="SystemsOfSalesWeb.UI.Consultas.cProductos" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 

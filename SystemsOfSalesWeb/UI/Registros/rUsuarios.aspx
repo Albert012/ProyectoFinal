@@ -1,35 +1,60 @@
-﻿<%@ Page Title="Registrarse" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="rUsuarios.aspx.cs" Inherits="SystemsOfSalesWeb.UI.Registros.rUsuarios" %>
+﻿<%@ Page Title="Registrarse" Language="C#" MasterPageFile="~/MainSite.Master" AutoEventWireup="true" CodeBehind="rUsuarios.aspx.cs" Inherits="SystemsOfSalesWeb.UI.Registros.rUsuarios" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentCP" runat="server">
+
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="card card-register mx-auto mt-5">
         <div class="card-header text-uppercase text-center text-primary">Usuarios</div>
         <div class="card-body">
             <div class="form-row">
                 <%--UsuarioId--%>
-                <div class="form-group col-md-1">
-                    <asp:Label Text="Id" class="text-primary" runat="server" />
-                    <asp:TextBox ID="UsuarioIdTextBox" class="form-control input-group" TextMode="Number" placeholder="0" runat="server" />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="UsuarioIdTextBox" ValidationGroup="Buscar" runat="server" ErrorMessage="*" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                </div>
+                <%--<div class="form-group col-md-1">--%>
+                    <%--<asp:Label Text="Id" class="text-primary" runat="server" />--%>
+                    <asp:TextBox ID="UsuarioIdTextBox" Visible="false" class="form-control input-group" TextMode="Number" placeholder="0" runat="server" />
+                    <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="UsuarioIdTextBox" ValidationGroup="Buscar" runat="server" ErrorMessage="*" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>--%>
+                <%--</div>--%>
                 <%--Fecha--%>
                 <div class="form-group col-md-2">
                     <asp:Label Text="Fecha" runat="server" />
-                    <asp:TextBox ID="FechaTextBox" class="form-control input-group" TextMode="Date" runat="server" />
+                    <asp:TextBox ID="FechaTextBox" class="form-control input-group" AutoCompleteType="Disabled" runat="server" />
+                    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" TargetControlID="FechaTextBox" Format="d/MM/yyyy" runat="server" />
                     <asp:RequiredFieldValidator ID="RFVFFecha" ValidationGroup="Guardar" ControlToValidate="FechaTextBox" runat="server" ErrorMessage="*" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
 
                 <%--Boton--%>
-                <div class="col-lg-1 p-0">
+                <%--<div class="col-lg-1 p-0">
                     <asp:LinkButton ID="BuscarLinkButton" ValidationGroup="Buscar" CssClass="btn btn-outline-info mt-4" runat="server" OnClick="BuscarLinkButton_Click">
                 <span class="fas fa-search"></span>
                      Buscar
             </asp:LinkButton>
-                </div>
+                </div>--%>
 
             </div>
+
+            <div class="form-row">
+                <%--Nombre--%>
+                <div class="form-group col-md-3">
+                    <label for="NombreTextBox">Nombres</label>
+                    <asp:TextBox ID="NombreTextBox" class="form-control input-sm" AutoCompleteType="Disabled" placeholder="Nombre Completo" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="NombreTextBox" ValidationGroup="Guardar" runat="server" ErrorMessage="*" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="NombreTextBox" ForeColor="Red" Display="Dynamic" ErrorMessage="Porfavor Digite Solo Letras" ValidationExpression="(^[a-zA-Z'.\s]{1,20}$)" ValidationGroup="Guardar"></asp:RegularExpressionValidator>
+                </div>
+
+                <%--Usuario--%>
+                <div class="form-group col-md-3">
+                    <label for="NombreTextBox">Nombre De Usuario</label>
+                    <asp:TextBox ID="UserNameTextBox" class="form-control input-sm" AutoCompleteType="Disabled" placeholder="Nombre Completo" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="UserNameTextBox" ValidationGroup="Guardar" runat="server" ErrorMessage="*" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                </div>
+
+
+            </div>
+
 
             <div class="form-row">
                 <%--Email--%>
@@ -38,13 +63,7 @@
                     <asp:TextBox ID="EmailTextBox" class="form-control input-sm" TextMode="Email" AutoCompleteType="Disabled" placeholder="Email Address" runat="server"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="EmailTextBox" ValidationGroup="Guardar" runat="server" ErrorMessage="*" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
-                <%--Nombre--%>
-                <div class="form-group col-md-3">
-                    <label for="NombreTextBox">Nombres</label>
-                    <asp:TextBox ID="NombreTextBox" class="form-control input-sm" AutoCompleteType="Disabled" placeholder="Nombre Completo" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="NombreTextBox" ValidationGroup="Guardar" runat="server" ErrorMessage="*" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
-                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="NombreTextBox" ForeColor="Red" Display="Dynamic" ErrorMessage="Porfavor Digite Solo Letras" ValidationExpression="(^[a-zA-Z'.\s]{1,20}$)" ValidationGroup="Guardar"></asp:RegularExpressionValidator>
-                </div>
+                
             </div>
 
 
@@ -81,19 +100,13 @@
                 <div class="justify-content-start">
                     <div class="form-group" style="display: inline-block">
                         <asp:LinkButton ID="NuevoLinkButton"  CssClass="btn btn-outline-info mt-4" runat="server" OnClick="NuevoLinkButton_Click" >
-                            <span class="fas fa-plus"></span>
-                            Nuevo
-                        </asp:LinkButton>
+                            <span class="fas fa-plus"></span> Nuevo </asp:LinkButton>
 
                         <asp:LinkButton ID="GuardarLinkButton" ValidationGroup="Guardar" CssClass="btn btn-outline-success mt-4" runat="server" OnClick="GuardarLinkButton_Click" >
-                            <span class="fas fa-save"></span>
-                            Guardar
-                        </asp:LinkButton>
+                            <span class="fas fa-save"></span> Guardar </asp:LinkButton>
 
                         <asp:LinkButton ID="EliminarLinkButton" ValidationGroup="Buscar"  CssClass="btn btn-outline-danger mt-4" runat="server" OnClick="EliminarLinkButton_Click" >
-                            <span class="fas fa-trash-alt"></span>
-                            Eliminar
-                        </asp:LinkButton>
+                            <span class="fas fa-trash-alt"></span> Cancelar </asp:LinkButton>
                     </div>
                 </div>
             </div>

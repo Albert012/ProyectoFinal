@@ -145,7 +145,7 @@ namespace BLL
                 //contexto.Entry(entity).State = EntityState.Modified;
                 var FacturaAnt = contexto.Facturas.Find(factura.FacturaId);
 
-                foreach (var item in FacturaAnt.Detalles)
+                /*foreach (var item in FacturaAnt.Detalles)
                 {
                     //var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
                     if (!factura.Detalles.ToList().Exists(f => f.Id == item.Id))
@@ -160,7 +160,9 @@ namespace BLL
                 {
                     var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
                     contexto.Entry(item).State = estado;
-                }
+                }*/
+                contexto.FacturasDetalles.RemoveRange(contexto.FacturasDetalles.Where(x => x.FacturaId == FacturaAnt.FacturaId));
+                contexto.Entry(FacturaAnt).State = EntityState.Deleted;
 
                 contexto.Entry(factura).State = EntityState.Modified;
 

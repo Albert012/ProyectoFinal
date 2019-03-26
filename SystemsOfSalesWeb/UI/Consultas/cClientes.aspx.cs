@@ -13,7 +13,7 @@ namespace SystemsOfSalesWeb.UI.Consultas
 {
     public partial class cClientes : System.Web.UI.Page
     {
-        Expression<Func<Clientes, bool>> filtro;// = p => true;
+        Expression<Func<Clientes, bool>> filtro = p => true;
         Repositorio<Clientes> repositorio = new Repositorio<Clientes>();
         public static List<Clientes> listClientes { get; set; }
 
@@ -24,7 +24,7 @@ namespace SystemsOfSalesWeb.UI.Consultas
             {
                 DesdeTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 HastaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                listClientes = repositorio.GetList(x => true);
+                listClientes = repositorio.GetList(filtro);
 
             }
         }

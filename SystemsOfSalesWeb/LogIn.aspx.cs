@@ -1,4 +1,6 @@
 ﻿using BLL;
+
+
 using Entidades;
 using System;
 using System.Collections.Generic;
@@ -48,7 +50,7 @@ namespace SystemsOfSalesWeb
             if (usuario != null)
             {
                 tipoUsuario = usuario.TipoUsuario;
-                FormsAuthentication.RedirectFromLoginPage(usuario.Email, true);
+                FormsAuthentication.RedirectFromLoginPage(usuario.NombreUsuario, true);
             }
             else
             {

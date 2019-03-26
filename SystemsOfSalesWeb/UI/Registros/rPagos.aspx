@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Pagos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="rPagos.aspx.cs" Inherits="SystemsOfSalesWeb.UI.Registros.rPagos" %>
+﻿<%@ Page Title="Pagos" Language="C#" MasterPageFile="~/MainSite.Master" AutoEventWireup="true" CodeBehind="rPagos.aspx.cs" Inherits="SystemsOfSalesWeb.UI.Registros.rPagos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

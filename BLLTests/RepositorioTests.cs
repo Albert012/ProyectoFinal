@@ -19,7 +19,6 @@ namespace BLL.Tests
             Productos productos = new Productos();
             productos.ProductoId = 2;
             productos.FechaRegistro = DateTime.Now;
-            productos.FechaVencimiento = productos.FechaRegistro.AddYears(1);
             productos.Descripcion = "Huevo";
             productos.Costo = 120;
             productos.Precio = 150;
@@ -37,7 +36,6 @@ namespace BLL.Tests
             Productos productos = new Productos();
             productos.ProductoId = 1;
             productos.FechaRegistro = DateTime.Now;
-            productos.FechaVencimiento = productos.FechaRegistro.AddYears(1);
             productos.Descripcion = "Salami";
             productos.Costo = 150;
             productos.Precio = 170;

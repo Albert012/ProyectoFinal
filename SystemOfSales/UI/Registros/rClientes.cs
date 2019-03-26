@@ -19,7 +19,7 @@ namespace SystemOfSales.UI.Registros
         {
             InitializeComponent();
         }
-
+        
         private void NuevoButton_Click(object sender, EventArgs e)
         {
             ClienteIdNumericUpDown.Value = 0;

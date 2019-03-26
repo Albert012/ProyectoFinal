@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Consulta Inventarios" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="cInventarios.aspx.cs" Inherits="SystemsOfSalesWeb.UI.Consultas.cInventarios" %>
+﻿<%@ Page Title="Consulta Inventarios" Language="C#" MasterPageFile="~/MainSite.Master" AutoEventWireup="true" CodeBehind="cInventarios.aspx.cs" Inherits="SystemsOfSalesWeb.UI.Consultas.cInventarios" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

@@ -35,7 +35,7 @@ namespace SystemsOfSalesWeb
             {
                 if (userLogin.TipoUsuario.Equals(TipoUsuario.Administrador.ToString()))
                 {
-                    Page.MasterPageFile = "~/Site.Master";
+                    Page.MasterPageFile = "~/MainSite.Master";
                 }
                 else
                     if (userLogin.TipoUsuario.Equals(TipoUsuario.Cliente.ToString()))

@@ -3,7 +3,7 @@ go
 use SystemOfSalesDB
 go
 
-
+select * from facturasdetalles
 
 create table Usuarios(
 UsuarioId int identity primary key,

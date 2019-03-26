@@ -1,8 +1,9 @@
-﻿<%@ Page Title="Consulta Facturas" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="cFacturas.aspx.cs" Inherits="SystemsOfSalesWeb.UI.Consultas.cFacturas" %>
+﻿<%@ Page Title="Consulta Facturas" Language="C#" MasterPageFile="~/MainSite.Master" AutoEventWireup="true" CodeBehind="cFacturas.aspx.cs" Inherits="SystemsOfSalesWeb.UI.Consultas.cFacturas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentCP" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="Panel" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div class="card card-register mx-auto mt-5">

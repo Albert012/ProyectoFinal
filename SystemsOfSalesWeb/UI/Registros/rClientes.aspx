@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Clientes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="rClientes.aspx.cs" Inherits="SystemsOfSalesWeb.UI.Registros.rClientes" %>
+﻿<%@ Page Title="Clientes" Language="C#" MasterPageFile="~/MainSite.Master" AutoEventWireup="true" CodeBehind="rClientes.aspx.cs" Inherits="SystemsOfSalesWeb.UI.Registros.rClientes" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -94,11 +94,13 @@
                 <div class="form-group col-md-2">
                     <asp:Label Text="Sexo" runat="server" />
                     <asp:DropDownList ID="SexoDropDownList" class="form-control input-sm" runat="server">
-                        <asp:ListItem Selected="True">Seleccione</asp:ListItem>
+                        <asp:ListItem Selected="True" Value="">Seleccione</asp:ListItem>
                         <asp:ListItem Text="Masculino" />
                         <asp:ListItem Text="Femenino" />
                     </asp:DropDownList>
-                    <asp:CustomValidator ID="SexoCustomValidator" runat="server" ValidationGroup="Guardar" ControlToValidate="SexoDropDownList" ErrorMessage="Seleccione Un Sexo" Display="Dynamic" ForeColor="Red" OnServerValidate="SexoCustomValidator_ServerValidate" ></asp:CustomValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ValidationGroup="Guardar" ControlToValidate="SexoDropDownList" runat="server" ErrorMessage="Sexo: Debe Seleccionar El Sexo" ForeColor="Red" Display="Dynamic"></asp:RequiredFieldValidator>
+                    
+                    <%--<asp:CustomValidator ID="SexoCustomValidator" runat="server" ValidationGroup="Guardar" ControlToValidate="SexoDropDownList" ErrorMessage="Seleccione Un Sexo" Display="Dynamic" ForeColor="Red" OnServerValidate="SexoCustomValidator_ServerValidate" ></asp:CustomValidator>--%>
                 </div>
                 <%--Balance--%>
                 <div class="form-group col-md-2">

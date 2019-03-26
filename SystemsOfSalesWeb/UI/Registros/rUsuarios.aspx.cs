@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SystemsOfSalesWeb.UI.Consultas;
 using SystemsOfSalesWeb.Utilitarios;
 
 namespace SystemsOfSalesWeb.UI.Registros
@@ -16,32 +17,32 @@ namespace SystemsOfSalesWeb.UI.Registros
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!Page.IsPostBack)
+            if (!Page.IsPostBack)
             {
                 LlenarDropDown();
-                FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                int id = Utils.ToInt(Request.QueryString["id"]);
+                //FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                //int id = Utils.ToInt(Request.QueryString["id"]);
 
-                if (id > 0)
-                {
-                    Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>();
-                    var usuario = repositorio.Buscar(id);
+                //if (id > 0)
+                //{
+                Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>();
+                var usuario = repositorio.Buscar(cUsuarios.id_Usuario);
 
-                    if (usuario == null)
-                        Utils.MostrarMensaje(this, "No Hay Resultado", "Error", "error");
-                    else
-                        LlenaCampos(usuario);
-                }
+                if (usuario == null)
+                    Utils.MostrarMensaje(this, "No Hay Resultado", "Error", "error");
+                else
+                    LlenaCampos(usuario);
+                //}
             }
 
-        }        
+        }
 
         protected void BuscarLinkButton_Click(object sender, EventArgs e)
         {
             Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>();
             Usuarios usuarios = repositorio.Buscar(Utils.ToInt(UsuarioIdTextBox.Text));
 
-            if(IsValid)
+            if (IsValid)
             {
                 if (usuarios != null)
                 {
@@ -55,41 +56,52 @@ namespace SystemsOfSalesWeb.UI.Registros
                 }
             }
         }
-           
+
 
         //Metodos
 
         private void LlenarDropDown()
         {
 
-            
+
             TipoUsuarioDropDownList.DataSource = Enum.GetValues(typeof(TipoUsuario));
             TipoUsuarioDropDownList.AppendDataBoundItems = true;
             TipoUsuarioDropDownList.DataBind();
-            
+
         }
 
         private Usuarios LLenaClase()
         {
-            Usuarios usuario = new Usuarios();
-            usuario.UsuarioId = Utils.ToInt(UsuarioIdTextBox.Text);
-            usuario.Fecha = Utils.ToDateTime(FechaTextBox.Text);
-            usuario.Email = EmailTextBox.Text;
-            usuario.NombreUsuario = NombreTextBox.Text;
-            usuario.Contrasena = ContrasenaTextBox.Text;
-            usuario.TipoUsuario = TipoUsuarioDropDownList.Text;
+            return new Usuarios
+            {
+                UsuarioId = Utils.ToInt(UsuarioIdTextBox.Text),
+                Fecha = Utils.ToDateTime(FechaTextBox.Text),
+                Email = EmailTextBox.Text,
+                NombreUsuario = NombreTextBox.Text,
+                Usuario = UserNameTextBox.Text,
+                Contrasena = ContrasenaTextBox.Text,
+                TipoUsuario = TipoUsuarioDropDownList.Text
+            };
 
-            return usuario;
+
         }
 
         private void LlenaCampos(Usuarios usuario)
         {
-            UsuarioIdTextBox.Text = usuario.UsuarioId.ToString();
-            FechaTextBox.Text = usuario.Fecha.ToString();
-            EmailTextBox.Text = usuario.Email; ;
-            NombreTextBox.Text = usuario.NombreUsuario;
-            TipoUsuarioDropDownList.Text = usuario.TipoUsuario;
-            ContrasenaTextBox.Text = usuario.Contrasena;
+            Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>();
+            usuario = repositorio.Buscar(cUsuarios.id_Usuario);
+            if (usuario != null)
+            {
+                UsuarioIdTextBox.Text = usuario.UsuarioId.ToString();
+                FechaTextBox.Text = usuario.Fecha.ToString("yyyy-MM-dd");
+                EmailTextBox.Text = usuario.Email; ;
+                ContrasenaTextBox.Text = usuario.Contrasena;
+                NombreTextBox.Text = usuario.NombreUsuario;
+                UserNameTextBox.Text = usuario.Usuario;
+                TipoUsuarioDropDownList.Text = usuario.TipoUsuario;
+                ContrasenaTextBox.Text = usuario.Contrasena;
+            }
+
 
         }
 
@@ -102,11 +114,12 @@ namespace SystemsOfSalesWeb.UI.Registros
             ContrasenaTextBox.Text = "";
             ConfirmarTextBox.Text = "";
             TipoUsuarioDropDownList.SelectedIndex = 0;
-        }       
+            cUsuarios.id_Usuario = 0;
+        }
 
         protected void CustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            if(ConfirmarTextBox.Text != ContrasenaTextBox.Text)
+            if (ConfirmarTextBox.Text != ContrasenaTextBox.Text)
             {
                 args.IsValid = false;
             }
@@ -148,7 +161,7 @@ namespace SystemsOfSalesWeb.UI.Registros
                         Utils.MostrarMensaje(this, "No Modificado", "Error", "error");
                         Limpiar();
                     }
-
+                    Response.Redirect(@"~\UI\Consultas\cUsuarios.aspx");
                 }
                 else
                 {
@@ -162,32 +175,35 @@ namespace SystemsOfSalesWeb.UI.Registros
                         Utils.MostrarMensaje(this, "No Guardado", "Error", "error");
                         Limpiar();
                     }
+                    Response.Redirect(@"~\UI\Consultas\cUsuarios.aspx");
                 }
             }
         }
 
         protected void EliminarLinkButton_Click(object sender, EventArgs e)
         {
-            Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>();
-            Usuarios usuarios = repositorio.Buscar(Utils.ToInt(UsuarioIdTextBox.Text));
+            Response.Redirect(@"~\UI\Consultas\cUsuarios.aspx");
 
-            if (IsValid)
-            {
-                if (usuarios == null)
-                {
-                    Utils.MostrarMensaje(this, "No Eliminado", "Error", "error");
-                    Limpiar();
-                }
-                else
-                {
-                    repositorio.Eliminar(usuarios.UsuarioId);
-                    Utils.MostrarMensaje(this, "Eliminado", "Exito!!", "success");
-                    Limpiar();
-                }
-            }
+            /* Repositorio<Usuarios> repositorio = new Repositorio<Usuarios>();
+             Usuarios usuarios = repositorio.Buscar(Utils.ToInt(UsuarioIdTextBox.Text));
+
+             if (IsValid)
+             {
+                 if (usuarios == null)
+                 {
+                     Utils.MostrarMensaje(this, "No Eliminado", "Error", "error");
+                     Limpiar();
+                 }
+                 else
+                 {
+                     repositorio.Eliminar(usuarios.UsuarioId);
+                     Utils.MostrarMensaje(this, "Eliminado", "Exito!!", "success");
+                     Limpiar();
+                 }*/
+
         }
 
 
-        //Metodos
+
     }
 }

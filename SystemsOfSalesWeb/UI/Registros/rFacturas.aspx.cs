@@ -12,12 +12,13 @@ namespace SystemsOfSalesWeb.UI.Registros
 {
     public partial class rFacturas : System.Web.UI.Page
     {
-        private Facturas factura = new Facturas();
+        protected Facturas factura = new Facturas();
         private Repositorio<Clientes> repositorioCliente = new Repositorio<Clientes>();
         private Repositorio<Productos> repositorioProducto = new Repositorio<Productos>();
         private FacturaRepositorio FacturaRepositorio = new FacturaRepositorio();
+
         private List<FacturasDetalles> detalles = new List<FacturasDetalles>();
-        //private Repositorio<FacturasDetalles> repositorioDetalle = new Repositorio<FacturasDetalles>();
+        private Repositorio<FacturasDetalles> repositorioDetalle = new Repositorio<FacturasDetalles>();
 
         string condicion = "[Seleccione]";
 
@@ -27,18 +28,18 @@ namespace SystemsOfSalesWeb.UI.Registros
             {
                 FechaTextBox.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
-                ViewState["Detalle"] = new FacturasDetalles();
+                //ViewState["Detalle"] = new FacturasDetalles();
                 LlenarDropDownListProductos();
                 LlenarDropDownListClientes();
                 //BindGrid();
-                //ViewState.Add("Factura", detalles);
-                //ViewState["Factura"] = new Facturas();
+                //ViewState.Add("FDetalle", detalles);
+                ViewState["Factura"] = new Facturas();
 
 
             }
             /*else
             {
-                detalles = (List<FacturasDetalles>)ViewState["Factura"];
+                detalles = (List<FacturasDetalles>)ViewState["FDetalle"];
             }*/
         }
 
@@ -75,12 +76,12 @@ namespace SystemsOfSalesWeb.UI.Registros
 
         private Facturas LlenaClase()
         {
-            
+            factura = (Facturas)ViewState["Factura"];
             factura.FacturaId = Utils.ToInt(FacturaIdTextBox.Text);
             factura.Fecha = Utils.ToDateTime(FechaTextBox.Text);
             factura.ClienteId = Utils.ToInt(ClienteDropDownList.SelectedValue);
             factura.Total = Utils.ToDecimal(MontoTextBox.Text);
-            factura.Detalles = (List<FacturasDetalles>)ViewState["Detalle"];
+           // factura.Detalles = detalles;
             return factura;
         }
 
@@ -95,7 +96,8 @@ namespace SystemsOfSalesWeb.UI.Registros
             ImporteTextBox.Text = "";
             MontoTextBox.Text = "";
             FacturaGridView.DataSource = null;
-            ViewState["Detalle"] = null;
+            FacturaGridView.DataBind();
+            ViewState["Factura"] = null;
 
             //BindGrid();
 
@@ -132,7 +134,7 @@ namespace SystemsOfSalesWeb.UI.Registros
         private string SubTotal()
         {
             decimal monto = 0;
-            foreach (var item in (List<FacturasDetalles>)ViewState["Detalle"] )
+            foreach (var item in factura.Detalles )
             {
                 monto += CalculosBLL.CalcularSubTotal(item.Importe);
             }
@@ -143,54 +145,72 @@ namespace SystemsOfSalesWeb.UI.Registros
         {
             if (IsValid)
             {
-               
-                if (FacturaGridView.Rows.Count != 0)
+                /*if (FacturaGridView.Rows.Count != 0)
                 {
-                    factura.Detalles = (List<FacturasDetalles>)ViewState["Detalle"];
+                    factura.Detalles = (List<FacturasDetalles>)ViewState["FDetalle"];
 
                 }
+              
+                 var facturas = FacturaRepositorio.Buscar(Utils.ToInt(FacturaIdTextBox.Text));
 
-                var facturas = FacturaRepositorio.Buscar(Utils.ToInt(FacturaIdTextBox.Text));
+                 if(facturas == null)
+                 {
+                     if(factura.Detalles.Exists(x=> x.ProductoId.Equals(Utils.ToInt(ProductoDropDownList.SelectedValue))))
+                     {
+                         var producto = factura.Detalles.Where(x => x.ProductoId.Equals(Utils.ToInt(ProductoDropDownList.SelectedValue)));
 
-                if(facturas != null)
-                {
-                    if(factura.Detalles.Exists(x=> x.ProductoId.Equals(Utils.ToInt(ProductoDropDownList.SelectedValue))))
-                    {
-                        var producto = factura.Detalles.Where(x => x.ProductoId.Equals(Utils.ToInt(ProductoDropDownList.SelectedValue)));
+                     }
 
-                    }
-
-                    if (((FacturasDetalles)ViewState["Detalle"]).Id != 0)
-                    {
-                        factura.Detalles.Add(new FacturasDetalles(((FacturasDetalles)ViewState["Detalle"]).Id, factura.FacturaId, Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.Text, Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text)));
-                    }
-                    else
-                        factura.Detalles.Add(new FacturasDetalles(0, factura.FacturaId, Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.SelectedItem.ToString(), Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text)));
-                    ViewState["Detalle"] = new FacturasDetalles();
-                }
-                else
-                {
-                    factura.Detalles.Add(new FacturasDetalles(0, 0, Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.SelectedItem.ToString(), Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text)));
-                    ViewState["Detalle"] = factura.Detalles;
-                }
-                SubTotal();
-                FacturaGridView.DataSource = ViewState["Detalle"];
-                FacturaGridView.DataBind();
+                     if (((FacturasDetalles)ViewState["Detalle"]).Id != 0)
+                     {
+                         factura.Detalles.Add(new FacturasDetalles(((FacturasDetalles)ViewState["Detalle"]).Id, Utils.ToInt(FacturaIdTextBox.Text), Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.Text, Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text)));
+                     }
+                     else
+                         factura.Detalles.Add(new FacturasDetalles(0, Utils.ToInt(FacturaIdTextBox.Text), Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.SelectedItem.ToString(), Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text)));
+                     ViewState["Detalle"] = new FacturasDetalles();
+                 }
+                 else
+                 {
+                     factura.Detalles.Add(new FacturasDetalles(0, Utils.ToInt(FacturaIdTextBox.Text), Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.SelectedItem.ToString(), Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text)));
+                     ViewState["Detalle"] = factura.Detalles;
+                 }
+                 //SubTotal();
+                 FacturaGridView.DataSource = ViewState["Detalle"];
+                 FacturaGridView.DataBind();*/
 
 
-                /*else
+                var facturaAnt = FacturaRepositorio.Buscar(Utils.ToInt(FacturaIdTextBox.Text));
+
+                if(facturaAnt == null)
                 {
                     Utils.MostrarMensaje(this, "Agregado", "Exito!!", "info");
                     factura = (Facturas)ViewState["Factura"];
-                    factura.AgregarDetalle(0, factura.FacturaId, Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.SelectedItem.ToString(), Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text));
+                    factura.AgregarDetalle(0, Utils.ToInt(FacturaIdTextBox.Text), Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.SelectedItem.ToString(), Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text));
 
-                    ViewState["Factura"] = factura;
-                    this.BindGrid();
-                    monto += CalculosBLL.CalcularSubTotal(Utils.ToDecimal(ImporteTextBox.Text));
+                }
+                else
+                {
+                    Utils.MostrarMensaje(this, "Agregado", "Exito!!", "info");
+                    facturaAnt = (Facturas)ViewState["Modificar"];
+                    facturaAnt.Detalles.Add(new FacturasDetalles(0, Utils.ToInt(FacturaIdTextBox.Text), Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.SelectedItem.ToString(), Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text)));
+                    //factura.AgregarDetalle(0, Utils.ToInt(FacturaIdTextBox.Text), Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.SelectedItem.ToString(), Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text));
 
-                    MontoTextBox.Text = monto.ToString();
-                }*/
-                
+                }
+                ViewState["Factura"] = factura;
+                this.BindGrid();
+                SubTotal();
+
+                //aqui
+                /*Utils.MostrarMensaje(this, "Agregado", "Exito!!", "info");
+                     factura = (Facturas)ViewState["Factura"];
+                     factura.AgregarDetalle(0, Utils.ToInt(FacturaIdTextBox.Text), Utils.ToInt(ProductoDropDownList.SelectedValue), ProductoDropDownList.SelectedItem.ToString(), Utils.ToInt(CantidadTextBox.Text), Utils.ToDecimal(PrecioTextBox.Text), Utils.ToDecimal(ImporteTextBox.Text));
+
+                     ViewState["Factura"] = factura;
+                     this.BindGrid();
+                     SubTotal();*/
+                //aqui nitido
+
+
 
                 /*detalles.Add(new FacturasDetalles(
                     id: 0,
@@ -201,9 +221,9 @@ namespace SystemsOfSalesWeb.UI.Registros
                     precio: Utils.ToDecimal(PrecioTextBox.Text),
                     importe: Utils.ToDecimal(ImporteTextBox.Text)
                     ));*/
-                
+
                 //SubTotal();
-                
+
 
             }
 

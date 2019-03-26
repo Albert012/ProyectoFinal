@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Consulta Pagos" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="cPagos.aspx.cs" Inherits="SystemsOfSalesWeb.UI.Consultas.cPagos" %>
+﻿<%@ Page Title="Consulta Pagos" Language="C#" MasterPageFile="~/MainSite.Master" AutoEventWireup="true" CodeBehind="cPagos.aspx.cs" Inherits="SystemsOfSalesWeb.UI.Consultas.cPagos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
